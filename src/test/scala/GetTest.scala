@@ -1,5 +1,7 @@
-import org.scalatest.{FreeSpec, Matchers}
+import java.io.FileInputStream
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.scalatest.{FreeSpec, Matchers}
 import scalaj.http.{Http, HttpResponse}
 
 /**
@@ -18,7 +20,7 @@ class GetTest extends FreeSpec{
 }
 
 
-class MainTest extends FreeSpec with Matchers {
+class ApiTest extends FreeSpec with Matchers {
   /** Что надо протестировать:
     * # Отправку сообщения ORDERS через АПИ.
     * # Наличие ошибки при повторной отправке сообщения без изменений.
@@ -68,9 +70,24 @@ class MainTest extends FreeSpec with Matchers {
 
     }
 
-    "Скачать xlsx и проверить корректность названия товара №2 и №4 в скачанном файле" in {
+    "Скачать xlsx" in {
 
     }
 
+  }
+}
+
+class ExcelTest extends FreeSpec {
+
+  "Проверить корректность названия товара №2 и №4 в скачанном файле" in {
+    val fileName = "taskfiles/Черновик подтверждения заказа №NN01 от 04.12.2011.xlsx"
+    val myExcelBook = new XSSFWorkBook(new FileInputStream(fileName))
+    val myExcelSheet = myExcelBook.getSheet("Birthdays")
+    val row = myExcelSheet.getRow(0)
+    val name = row.getCell(0).getStringCellValue()
+    System.out.println("name : " + name)
+
+
+    myExcelBook.close();
   }
 }
