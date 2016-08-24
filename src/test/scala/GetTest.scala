@@ -1,8 +1,8 @@
 import java.io.FileInputStream
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.scalatest.{FreeSpec, Matchers}
-import scalaj.http.{Http, HttpResponse}
+import scalaj.http.Http
 
 /**
   * Created by Enot on 20.08.2016.
@@ -21,19 +21,9 @@ class GetTest extends FreeSpec{
 
 
 class ApiTest extends FreeSpec with Matchers {
-  /** Что надо протестировать:
-    * # Отправку сообщения ORDERS через АПИ.
-    * # Наличие ошибки при повторной отправке сообщения без изменений.
-    * # В интерфейсе поставщика проверить наличие отправленного сообщения.
-    * # В карточке сообщения на вкладке "Заявка" проверить:
-    * ## Корректность названия товара №2 и №4 (названия можно найти и менять из файла ORDERS).
-    * ## Скачать xlsx и проверить корректность названия товара №2 и №4 в скачанном файле.
-    */
-
 
 
   "Отправка сообщения ORDERS через АПИ"  - {
-
     var token = ""
 
     "Получение токена авторизации "in {
@@ -54,38 +44,38 @@ class ApiTest extends FreeSpec with Matchers {
       val response = Http("https://test-edi-api.kontur.ru/V1/Messages/SendMessage?boxId=e4e8b56d-3390-4e29-b7f5-169a83efacab").postData("UNB+UNOE:3+1277777777773+1377777777770+20111204:1200+12345555'\nUNH+01+ORDERS:D:01B:UN:EAN010'\nBGM+220+NN01+9'\nDTM+137:201112041159:203'\nDTM+2:201112051200:203'\nRFF+CT:contractNumber'\nDTM+171:20131220:102'\nNAD+SU+1377777777770::9'\nRFF+YC1:21546'\nNAD+BY+1277777777773::9'\nNAD+DP+1277777777773::9'\nCUX+2:RUB:9'\nLIN+1++4600375914498:SRV'\nPIA+1+68778578:SA'\nPIA+1+358748:IN'\nIMD+F++:::GoodItem1'\nQTY+21:30.555:KGM'\nMOA+203:1527.75'\nPRI+AAA:50.0000'\nLIN+2++4366687650157:SRV'\nPIA+1+456:SA'\nPIA+1+358746:IN'\nIMD+F++:::GoodItem2'\nQTY+21:40:PCE'\nMOA+203:1865.58'\nPRI+AAA:46.6395'\nLIN+3++4600375914474:SRV'\nPIA+1+615464:SA'\nQTY+21:0:PCE'\nPRI+AAA:56.7800'\nLIN+4++4600375001112:SRV'\nPIA+1+111:SA'\nPIA+1+333:IN'\nIMD+F++:::GoodItme3'\nQTY+21:100:PCE'\nMOA+203:99995.00'\nPRI+AAA:999.95'\nUNS+S'\nMOA+125:106568.2760'\nCNT+2:7'\nUNT+48+01'\nUNZ+1+1'").header("Authorization", authHeader).param("boxId","e4e8b56d-3390-4e29-b7f5-169a83efacab").asString
       println(response.body)
     }
-
   }
 
-  "Наличие ошибки при повторной отправке сообщения без изменений" in {
-
+  "Наличие ошибки при повторной отправке сообщения без изменений" ignore {
   }
 
-  "В интерфейсе поставщика проверить наличие отправленного сообщения" in {
-
+  "В интерфейсе поставщика проверить наличие отправленного сообщения" ignore {
   }
 
   "В карточке сообщения на вкладке \"Заявка\" проверить" - {
-    "Корректность названия товара №2 и №4 (названия можно найти и менять из файла ORDERS)" in {
-
+    "Корректность названия товара №2 и №4 (названия можно найти и менять из файла ORDERS)" ignore {
     }
 
-    "Скачать xlsx" in {
-
+    "Скачать xlsx" ignore {
     }
 
   }
 }
 
-class ExcelTest extends FreeSpec {
+class ExcelTest extends FreeSpec with Matchers{
 
   "Проверить корректность названия товара №2 и №4 в скачанном файле" in {
     val fileName = "taskfiles/Черновик подтверждения заказа №NN01 от 04.12.2011.xlsx"
-    val myExcelBook = new XSSFWorkBook(new FileInputStream(fileName))
-    val myExcelSheet = myExcelBook.getSheet("Birthdays")
-    val row = myExcelSheet.getRow(0)
-    val name = row.getCell(0).getStringCellValue()
-    System.out.println("name : " + name)
+
+    val myExcelBook = new XSSFWorkbook(new FileInputStream(fileName))
+    def cellValue(sheet: Int = 0, row: Int, col: Int): String = myExcelBook.getSheetAt(sheet).getRow(row).getCell(col).getStringCellValue
+
+    val goodName1 = cellValue(row = 18, col = 2)
+    goodName1 should be ("GoodItem1")
+    System.out.println("name : " + goodName1)
+    val goodName2 = cellValue(row = 21, col = 2)
+    goodName2 should be ("GoodItem1")
+    System.out.println("name : " + goodName2)
 
 
     myExcelBook.close();
