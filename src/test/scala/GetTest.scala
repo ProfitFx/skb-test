@@ -76,8 +76,8 @@ class ExcelTest extends FreeSpec with Matchers{
     val goodName2 = cellValue(row = 21, col = 2)
     goodName2 should be ("GoodItem1")
     System.out.println("name : " + goodName2)
-
-
-    myExcelBook.close();
+    myExcelBook.close()
   }
 }
+
+class WebTest extends FreeSpecWithBrowserScaledScreen
