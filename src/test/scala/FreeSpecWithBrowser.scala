@@ -20,33 +20,14 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
   implicit override val patienceConfig = PatienceConfig(timeout = scaled(Span(eventuallyTimeout, Seconds)), interval = scaled(Span(eventuallyInterval, Millis)))
   //implicit override val patienceConfig = PatienceConfig(timeout = eventuallyTimeout millis, interval = eventuallyInterval millis)
   setCaptureDir("report")
-
   val firefoxProfile = new FirefoxProfile()
-
-  // firefoxProfile.setPreference("browser.download.folderList",2)
-  // firefoxProfile.setPreference("browser.download.manager.showWhenStarting",false)
-  // firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
-  // firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.home") + "/Downloads/");
-
-
-  firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk", mimeTypes.s)
-
-  WebDriver driver = new FirefoxDriver(firefoxProfile);
-
-  //  implicit val webDriver: WebDriver =  browserType match {
-  //    case 1 => new FirefoxDriver(firefoxProfile)
-  //    case 2 => new ChromeDriver()
-  //    case 3 => new InternetExplorerDriver()
-  //    //case _ => "any"
-  //  }
+  firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/forced-download")
+  implicit val webDriver = new FirefoxDriver(firefoxProfile)
   webDriver.manage().window().maximize()
-
 
   override def afterAll(){//Код выполняется после всех шагов
     quit()
   }
-
-  val baseURL = "https://mpvk-test.pub.centre-it.com/MPVK/"
 
 }
 
@@ -72,8 +53,17 @@ trait FreeSpecWithBrowserScaledScreen extends FreeSpecWithBrowser{
   }
 }
 
+//  implicit val webDriver: WebDriver =  browserType match {
+//    case 1 => new FirefoxDriver(firefoxProfile)
+//    case 2 => new ChromeDriver()
+//    case 3 => new InternetExplorerDriver()
+//    //case _ => "any"
+//  }
 
 
-
+// firefoxProfile.setPreference("browser.download.folderList",2)
+// firefoxProfile.setPreference("browser.download.manager.showWhenStarting",false)
+// firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
+// firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.home") + "/Downloads/");
 
 
