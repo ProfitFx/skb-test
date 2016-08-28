@@ -5,9 +5,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.scalatest.{FreeSpec, Matchers}
 
 import scalaj.http.Http
-
 import org.json4s._
 import org.json4s.native.JsonMethods._
+
+import scalax.file.Path
 
 /**
   * Created by Enot on 20.08.2016.
@@ -49,7 +50,7 @@ class ApiTest extends FreeSpec with Matchers {
       println(token)
     }
 
-    "Получение BoxesInfo и извлечение из него идентификатора ящика" in {
+    "Получение BoxesInfo и извлечение из него идентификатора ящика" in{
       val response = Http(s"$url/Boxes/GetBoxesInfo").header("Authorization", authHeader).asString
       println(response.body)
       val boxJson = parse(response.body)
@@ -57,13 +58,43 @@ class ApiTest extends FreeSpec with Matchers {
       println(boxId)
     }
 
+    "Получение событий ящиков" in {
+      val response = Http(s"$url/Boxes/GetBoxesInfo").header("Authorization", authHeader).asString
+      val boxJson = parse(response.body)
+      val boxes = (boxJson \ "Boxes").children
+      boxes.foreach(elem => {
+        val box = (elem \ "Id").values.toString
+        println(box)
+        val response = Http(s"$url/Messages/GetEvents?boxId=$box").header("Authorization", authHeader).asString
+        println("\n" + response.body)
+      })
+    }
+
     "Отправка сообщения" ignore {
 
       val postBody = scala.io.Source.fromFile("taskFiles/orders.txt").mkString
-      val response = Http(s"$url/Messages/SendMessage?boxId=$boxId").postData(postBody).asString
+      val response = Http(s"$url/Messages/SendMessage?boxId=$boxId").header("Authorization", authHeader).postData(postBody).asString
       // val response = Http(s"$url/Messages/SendMessage?boxId=$boxId").postData("UNB+UNOE:3+1277777777773+1377777777770+20111204:1200+12345555'\nUNH+01+ORDERS:D:01B:UN:EAN010'\nBGM+220+NN01+9'\nDTM+137:201112041159:203'\nDTM+2:201112051200:203'\nRFF+CT:contractNumber'\nDTM+171:20131220:102'\nNAD+SU+1377777777770::9'\nRFF+YC1:21546'\nNAD+BY+1277777777773::9'\nNAD+DP+1277777777773::9'\nCUX+2:RUB:9'\nLIN+1++4600375914498:SRV'\nPIA+1+68778578:SA'\nPIA+1+358748:IN'\nIMD+F++:::GoodItem1'\nQTY+21:30.555:KGM'\nMOA+203:1527.75'\nPRI+AAA:50.0000'\nLIN+2++4366687650157:SRV'\nPIA+1+456:SA'\nPIA+1+358746:IN'\nIMD+F++:::GoodItem2'\nQTY+21:40:PCE'\nMOA+203:1865.58'\nPRI+AAA:46.6395'\nLIN+3++4600375914474:SRV'\nPIA+1+615464:SA'\nQTY+21:0:PCE'\nPRI+AAA:56.7800'\nLIN+4++4600375001112:SRV'\nPIA+1+111:SA'\nPIA+1+333:IN'\nIMD+F++:::GoodItme3'\nQTY+21:100:PCE'\nMOA+203:99995.00'\nPRI+AAA:999.95'\nUNS+S'\nMOA+125:106568.2760'\nCNT+2:7'\nUNT+48+01'\nUNZ+1+1'").header("Authorization", authHeader).param("boxId","e4e8b56d-3390-4e29-b7f5-169a83efacab").asString
       println(response.body)
+      ///V1/Messages/GetOutboxMessage
+
     }
+
+    "Получение тела сообщения" ignore {
+      val messageId = "9c2dccda-8899-45cf-bffc-80240bace7fb"
+      val response = Http(s"$url/Messages/GetInboxMessage?boxId=$boxId&messageId=$messageId").header("Authorization", authHeader).asString
+      println(response.body)
+    }
+
+    "Получение PartiesInfo" ignore {
+      val response = Http(s"$url/Parties/GetAccessiblePartiesInfo").header("Authorization", authHeader).asString
+      println(response.body)
+    }
+    "Получение GetEvents" in {
+      val response = Http(s"$url/Messages/GetEvents?boxId=$boxId").header("Authorization", authHeader).asString
+      println("\n" + response.body)
+    }
+
   }
 
   "Наличие ошибки при повторной отправке сообщения без изменений" ignore {
@@ -118,6 +149,7 @@ class WebTest extends FreeSpecWithBrowserScaledScreen{
 
   }
   "Загрузка файла" in {
+    Path("downloads").deleteRecursively(true,true)
     click on xpath("html/body/div[1]/div/div[4]/div[4]/div[1]/div[1]/a/span")
     click on xpath("html/body/div[3]/div[1]/div[2]/div/div[2]/a/span[3]/span")
     Thread.sleep(5000)
