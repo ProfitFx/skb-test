@@ -1,13 +1,9 @@
-import java.io.FileInputStream
-
 import com.typesafe.config.ConfigFactory
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import org.scalatest.{FreeSpec, Matchers}
-
-import scalaj.http.Http
 import org.json4s._
 import org.json4s.native.JsonMethods._
+import org.scalatest.{DoNotDiscover, FreeSpec, Matchers}
 
+import scalaj.http.Http
 import scalax.file.Path
 
 /**
@@ -15,7 +11,18 @@ import scalax.file.Path
   *
   * работа с экселем
   * https://tproger.ru/translations/how-to-read-write-excel-file-java-poi-example/
+  *
+  * class StepsSuite extends Suites(
+  * new Test3,
+  * new Test1,
+  * new Test2
+  * )with SequentialNestedSuiteExecution
+  *
+  *
+  *
   */
+
+@DoNotDiscover
 class GetTest extends FreeSpec{
   "Good test" in {
     assert(true)
@@ -25,7 +32,7 @@ class GetTest extends FreeSpec{
   }
 }
 
-
+@DoNotDiscover
 class ApiTest extends FreeSpec with Matchers {
 
   val conf = ConfigFactory.load
@@ -113,25 +120,26 @@ class ApiTest extends FreeSpec with Matchers {
 
   }
 }
+//@DoNotDiscover
+//class ExcelTest extends FreeSpec with Matchers{
+//
+//  "Проверить корректность названия товара №2 и №4 в скачанном файле" in {
+//    val fileName = "taskfiles/Черновик подтверждения заказа №NN01 от 04.12.2011.xlsx"
+//
+//    val myExcelBook = new XSSFWorkbook(new FileInputStream(fileName))
+//    def cellValue(sheet: Int = 0, row: Int, col: Int): String = myExcelBook.getSheetAt(sheet).getRow(row).getCell(col).getStringCellValue
+//
+//    val goodName1 = cellValue(row = 18, col = 2)
+//    goodName1 should be ("GoodItem1")
+//    System.out.println("name : " + goodName1)
+//    val goodName2 = cellValue(row = 21, col = 2)
+//    goodName2 should be ("GoodItem1")
+//    System.out.println("name : " + goodName2)
+//    myExcelBook.close()
+//  }
+//}
 
-class ExcelTest extends FreeSpec with Matchers{
-
-  "Проверить корректность названия товара №2 и №4 в скачанном файле" in {
-    val fileName = "taskfiles/Черновик подтверждения заказа №NN01 от 04.12.2011.xlsx"
-
-    val myExcelBook = new XSSFWorkbook(new FileInputStream(fileName))
-    def cellValue(sheet: Int = 0, row: Int, col: Int): String = myExcelBook.getSheetAt(sheet).getRow(row).getCell(col).getStringCellValue
-
-    val goodName1 = cellValue(row = 18, col = 2)
-    goodName1 should be ("GoodItem1")
-    System.out.println("name : " + goodName1)
-    val goodName2 = cellValue(row = 21, col = 2)
-    goodName2 should be ("GoodItem1")
-    System.out.println("name : " + goodName2)
-    myExcelBook.close()
-  }
-}
-
+@DoNotDiscover
 class WebTest extends FreeSpecWithBrowserScaledScreen{
 
   val conf = ConfigFactory.load

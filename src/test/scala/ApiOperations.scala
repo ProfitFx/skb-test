@@ -1,7 +1,7 @@
 import com.typesafe.config.ConfigFactory
 import org.json4s.native.JsonMethods._
 import org.scalatest.concurrent.Eventually
-import org.scalatest.{CancelAfterFailure, FreeSpec, Matchers}
+import org.scalatest.{DoNotDiscover, CancelAfterFailure, FreeSpec, Matchers}
 import org.scalatest.time.SpanSugar._
 
 import scalaj.http.Http
@@ -9,11 +9,11 @@ import scalaj.http.Http
 /**
   * Created by Enot on 29.08.2016.
   */
+@DoNotDiscover
 class ApiOperations extends FreeSpec with Matchers with Eventually with CancelAfterFailure {
 
   val conf = ConfigFactory.load
 
-  var token = ""
   var boxId = "e4e8b56d-3390-4e29-b7f5-169a83efacab"
   var authHeader = ""
   var lastEventID = ""
@@ -32,7 +32,7 @@ class ApiOperations extends FreeSpec with Matchers with Eventually with CancelAf
   "Получение токена авторизации и формирование заголовка для последкющих вызовов API" in {
     val firstAuthHeader = s"KonturEdiAuth konturediauth_api_client_id=$id, konturediauth_login=$login, konturediauth_password=$password"
     val response = Http(s"$url/Authenticate").postForm.header("Authorization", firstAuthHeader).asString
-    token = response.body
+    val token = response.body
     authHeader = s"KonturEdiAuth konturediauth_api_client_id=$id, konturediauth_token=$token"
     //println(token)
   }
@@ -60,7 +60,7 @@ class ApiOperations extends FreeSpec with Matchers with Eventually with CancelAf
   //      println(response.body)
   //    }
 
-  "Получение событий ящика" in {
+  "Получение событий ящика и проверка дубликата" in {
     eventually(timeout(10 seconds), interval(500 millis)) {
       val response = Http(s"$url/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventID").header("Authorization", authHeader).asString
       val responseJson = parse(response.body)

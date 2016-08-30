@@ -1,6 +1,6 @@
 import org.openqa.selenium.firefox.{FirefoxDriver, FirefoxProfile}
 import org.scalatest._
-import org.scalatest.concurrent.{Eventually, Timeouts}
+import org.scalatest.concurrent.{Eventually, TimeLimits}
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.selenium.WebBrowser
 import org.scalatest.time.{Millis, Seconds, Span}
@@ -8,7 +8,7 @@ import org.scalatest.time.{Millis, Seconds, Span}
 /**
   * Created by smakhetov on 11.04.2016.
   */
-trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with Timeouts with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks{
+trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with TimeLimits with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks{
   //Настройки для блока "eventually", который пытается отловить элемент в течение "timeout" с интервалом "interval"
   //Без этого блока тест упадет просто не найдя элемента на странице
   val eventuallyTimeout = 3 // Секунд
