@@ -7,5 +7,5 @@ import org.scalatest.DoNotDiscover
 @DoNotDiscover
 class ПроверкаЗаявкиВВебИнтерфейсе extends FreeSpecWithBrowserScaledScreen{
 
-
+// .//*[@id='ScrollFix']/div[4]/div[4]/div[4]/div[2]/a
 }

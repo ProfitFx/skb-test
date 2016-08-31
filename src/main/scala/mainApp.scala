@@ -25,5 +25,12 @@ object mainApp1 extends App {
   println(events.length)
   println((events(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString)
   println((events(1) \ "EventType").values.toString)
+}
+
+object mainApp2 extends App {
+val patt = "123".r
+  val s = "01234512345"
+  val m = patt.findAllMatchIn(s).toList
+  m.foreach(a => println(a))
 
 }

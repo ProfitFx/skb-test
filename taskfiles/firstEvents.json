@@ -1,0 +1,77 @@
+{
+  "Events": [
+    {
+      "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+      "PartyId": "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+      "EventId": "693ec13b-8f80-4a4a-b40f-3d1e3e928db3",
+      "EventDateTime": "2016-08-31T19:03:19.0718237Z",
+      "EventType": "NewOutboxMessage",
+      "EventContent": {
+        "OutboxMessageMeta": {
+          "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+          "MessageId": "c5b13ece-3e07-479d-a5f8-d53f97642414",
+          "DocumentCirculationId": "df1bb77c-5fd0-4f4e-8aeb-9ac852ce6bd1"
+        }
+      }
+    },
+    {
+      "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+      "PartyId": "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+      "EventId": "6d8dc6ed-47be-4d8a-b590-55e39eef8452",
+      "EventDateTime": "2016-08-31T19:03:19.2362679Z",
+      "EventType": "RecognizeMessage",
+      "EventContent": {
+        "DocumentType": "Orders",
+        "SenderPartyId": "ce0e689e-9f1f-4e9a-a113-a68dda559832",
+        "RecipientPartyId": "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+        "OutboxMessageMeta": {
+          "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+          "MessageId": "c5b13ece-3e07-479d-a5f8-d53f97642414",
+          "DocumentCirculationId": "df1bb77c-5fd0-4f4e-8aeb-9ac852ce6bd1"
+        }
+      }
+    },
+    {
+      "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+      "PartyId": "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+      "EventId": "14237827-a623-4b87-8022-6b0b997b377f",
+      "EventDateTime": "2016-08-31T19:03:20.060066Z",
+      "EventType": "NewInboxMessage",
+      "EventContent": {
+        "InboxMessageMeta": {
+          "SendDateTime": "2016-08-31T19:03:17.2760256Z",
+          "Sender": {
+            "PartnerId": "ce0e689e-9f1f-4e9a-a113-a68dda559832",
+            "PartnerGln": "1277777777773",
+            "PartnerName": "Махетов сеть"
+          },
+          "MessageFormat": "Eancom2002",
+          "DocumentDetails": {
+            "DocumentType": "Orders",
+            "DocumentIsTest": false,
+            "DocumentNumber": "NN02",
+            "DocumentDate": "2011-12-04T11:59:00Z"
+          },
+          "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+          "MessageId": "cfcac301-dd15-47e4-b472-933b52973a3b",
+          "DocumentCirculationId": "df1bb77c-5fd0-4f4e-8aeb-9ac852ce6bd1"
+        }
+      }
+    },
+    {
+      "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+      "PartyId": "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+      "EventId": "50eea9b3-8e6a-486f-9fcc-9f983bf4b8a5",
+      "EventDateTime": "2016-08-31T19:03:20.5022527Z",
+      "EventType": "MessageDelivered",
+      "EventContent": {
+        "OutboxMessageMeta": {
+          "BoxId": "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+          "MessageId": "c5b13ece-3e07-479d-a5f8-d53f97642414",
+          "DocumentCirculationId": "df1bb77c-5fd0-4f4e-8aeb-9ac852ce6bd1"
+        }
+      }
+    }
+  ],
+  "LastEventId": "50eea9b3-8e6a-486f-9fcc-9f983bf4b8a5"
+}
