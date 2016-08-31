@@ -5,17 +5,13 @@ import org.scalatest.{DoNotDiscover, BeforeAndAfterAll, FreeSpec, Matchers}
 
 /**
   * Created by smakhetov on 30.08.2016.
-  */
-
-
-/**
   * Тест проверяет значение полей таблицы Excel.
   * В начале описываются координаты и ожидаемые значения ячеек в таблице,
   * Далее для каждой строки таблицы производится извлечение значения и сверка
   */
 
 @DoNotDiscover
-class ExcelCheck extends FreeSpec with Matchers with TableDrivenPropertyChecks with BeforeAndAfterAll{
+class ПроверкаФайлаЭксель extends FreeSpec with Matchers with TableDrivenPropertyChecks with BeforeAndAfterAll{
 
   val excelCheckTable = Table (
     ("Лист", "Строка", "Столбец", "Ожидаемое значение"),

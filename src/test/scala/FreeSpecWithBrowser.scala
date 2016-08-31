@@ -3,7 +3,7 @@ import org.scalatest._
 import org.scalatest.concurrent.{Eventually, TimeLimits}
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.selenium.WebBrowser
-import org.scalatest.time.{Millis, Seconds, Span}
+import org.scalatest.time.SpanSugar._
 
 /**
   * Created by smakhetov on 11.04.2016.
@@ -11,11 +11,14 @@ import org.scalatest.time.{Millis, Seconds, Span}
 trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with TimeLimits with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks{
   //Настройки для блока "eventually", который пытается отловить элемент в течение "timeout" с интервалом "interval"
   //Без этого блока тест упадет просто не найдя элемента на странице
+
+
+
   val eventuallyTimeout = 3 // Секунд
   val eventuallyInterval = 250 // Милисекунд
 
-  implicit override val patienceConfig = PatienceConfig(timeout = scaled(Span(eventuallyTimeout, Seconds)), interval = scaled(Span(eventuallyInterval, Millis)))
-  //implicit override val patienceConfig = PatienceConfig(timeout = eventuallyTimeout millis, interval = eventuallyInterval millis)
+  //implicit override val patienceConfig = PatienceConfig(timeout = scaled(Span(eventuallyTimeout, Seconds)), interval = scaled(Span(eventuallyInterval, Millis)))
+  implicit override val patienceConfig = PatienceConfig(timeout = eventuallyTimeout millis, interval = eventuallyInterval millis)
   setCaptureDir("report")
   val firefoxProfile = new FirefoxProfile()
   firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
@@ -24,9 +27,10 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
   firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false)
   //firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.home") + "/Downloads/")
   firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.dir") + """\downloads\""")
-
   implicit val webDriver = new FirefoxDriver(firefoxProfile)
   webDriver.manage().window().maximize()
+
+
 
 
   override def afterAll(){//Код выполняется после всех шагов
