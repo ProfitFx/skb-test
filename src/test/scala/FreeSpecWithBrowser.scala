@@ -1,3 +1,4 @@
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.{FirefoxDriver, FirefoxProfile}
 import org.scalatest._
 import org.scalatest.concurrent.{Eventually, TimeLimits}
@@ -27,13 +28,16 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
   firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false)
   //firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.home") + "/Downloads/")
   firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.dir") + """\downloads\""")
-  implicit val webDriver = new FirefoxDriver(firefoxProfile)
+  implicit var webDriver: WebDriver = new FirefoxDriver(firefoxProfile)
+
+
+override def beforeAll = {
+  //webDriver = new FirefoxDriver(firefoxProfile)
   webDriver.manage().window().maximize()
+}
 
 
-
-
-  override def afterAll(){//Код выполняется после всех шагов
+  override def afterAll{//Код выполняется после всех шагов
     quit()
   }
 

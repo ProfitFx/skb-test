@@ -28,6 +28,7 @@ class ПовторнаяОтправкаСообщения extends FreeSpec with
   val box3 = "89941797-22ad-4007-9257-f26395982c02"
   val box4 = "e4e8b56d-3390-4e29-b7f5-169a83efacab"
 
+  val orderNumber = conf.getString("testData.orderNumber")
 
   "Получение токена авторизации и формирование заголовка для последкющих вызовов API" in {
     val firstAuthHeader = s"KonturEdiAuth konturediauth_api_client_id=$id, konturediauth_login=$login, konturediauth_password=$password"
@@ -47,7 +48,7 @@ class ПовторнаяОтправкаСообщения extends FreeSpec with
 
 
   "Отправка сообщения 4" in {
-    val postBody = scala.io.Source.fromFile("taskFiles/orders.txt").mkString
+    val postBody = scala.io.Source.fromFile("testFiles/orders.txt").mkString.replaceFirst("NN00",orderNumber)
     val response = Http(s"$url/Messages/SendMessage?boxId=$boxId").header("Authorization", authHeader).postData(postBody).asString
     // println(response.body)
   }

@@ -1,8 +1,7 @@
 import com.typesafe.config.ConfigFactory
 import org.json4s.native.JsonMethods._
-import org.scalatest.{FreeSpec, Matchers}
 import org.scalatest.concurrent.Eventually
-import org.scalatest.time.SpanSugar._
+import org.scalatest.{FreeSpec, Matchers}
 
 import scalaj.http.Http
 
@@ -23,6 +22,7 @@ class ПервичнаяОтправкаСообщения extends FreeSpec with
     val login = conf.getString("client.login")
     val password = conf.getString("client.password")
     var id = conf.getString("client.id")
+    val orderNumber = conf.getString("testData.orderNumber")
 
     "Получение токена авторизации и формирование заголовка для последкющих вызовов API" in {
       val firstAuthHeader = s"KonturEdiAuth konturediauth_api_client_id=$id, konturediauth_login=$login, konturediauth_password=$password"
@@ -40,7 +40,7 @@ class ПервичнаяОтправкаСообщения extends FreeSpec with
     }
 
     "Отправка сообщения" in {
-      val postBody = scala.io.Source.fromFile("taskFiles/orders.txt").mkString
+      val postBody = scala.io.Source.fromFile("testFiles/orders.txt").mkString.replaceFirst("NN00",orderNumber)
       val response = Http(s"$url/Messages/SendMessage?boxId=$boxId").header("Authorization", authHeader).postData(postBody).asString
       println(response.body)
       Thread.sleep(20000)
