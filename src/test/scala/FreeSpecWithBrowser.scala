@@ -4,6 +4,7 @@ import org.scalatest._
 import org.scalatest.concurrent.{Eventually, TimeLimits}
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.selenium.WebBrowser
+import org.scalatest.time.Seconds
 import org.scalatest.time.SpanSugar._
 
 /**
@@ -15,11 +16,11 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
 
 
 
-  val eventuallyTimeout = 3 // Секунд
+  val eventuallyTimeout = 10 // Секунд
   val eventuallyInterval = 250 // Милисекунд
 
   //implicit override val patienceConfig = PatienceConfig(timeout = scaled(Span(eventuallyTimeout, Seconds)), interval = scaled(Span(eventuallyInterval, Millis)))
-  implicit override val patienceConfig = PatienceConfig(timeout = eventuallyTimeout millis, interval = eventuallyInterval millis)
+  implicit override val patienceConfig = PatienceConfig(timeout = eventuallyTimeout seconds, interval = eventuallyInterval millis)
   setCaptureDir("report")
   val firefoxProfile = new FirefoxProfile()
   firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
@@ -57,8 +58,8 @@ trait FreeSpecWithBrowserScaledScreen extends FreeSpecWithBrowser{
         createScreenCaptureToReport(scale = 100)
         failed
       case other =>
-        markup(s"""<a href ="$currentUrl">$currentUrl</a>""")
-        createScreenCaptureToReport()
+       // markup(s"""<a href ="$currentUrl">$currentUrl</a>""")
+       // createScreenCaptureToReport()
         other
     }
   }

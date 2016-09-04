@@ -9,7 +9,7 @@ import scalax.file.Path
 
 @DoNotDiscover
 class ПроверкаЗаявкиВВебИнтерфейсе extends FreeSpecWithBrowserScaledScreen{
-
+  val orderNumber = "NN04"
   // .//*[@id='ScrollFix']/div[4]/div[4]/div[4]/div[2]/a
   val conf = ConfigFactory.load
   val baseUrl = conf.getString("web.url")
@@ -26,14 +26,14 @@ class ПроверкаЗаявкиВВебИнтерфейсе extends FreeSpecW
     //eventually{println(find(xpath("html/body/div[1]/div/div[4]/div[4]/div[4]/div[2]/a/span[4]/span[2]/span")).get.text)}
   }
 
-
-
-
   "Загрузка файла" in {
     Path("downloads").deleteRecursively(true,true)
-    click on xpath("html/body/div[1]/div/div[4]/div[4]/div[4]/div[2]/a/span[4]/span[2]/span")
+    clickOn(xpath(s"//*[contains(text(), '$orderNumber')]"))
     click on xpath("html/body/div[1]/div/div[4]/div[4]/div[3]/div[1]/div/div[1]/div/div[2]/span/a/span[2]")
-    Thread.sleep(2000)
+   // Thread.sleep(3000)
+    eventually{
+      new java.io.File(s"downloads/Черновик подтверждения заказа №$orderNumber от 04.12.2011.xlsx") should be ('exists)
+    }
   }
 
 }
