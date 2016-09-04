@@ -1,13 +1,14 @@
 import com.typesafe.config.ConfigFactory
 import org.json4s.native.JsonMethods._
 import org.scalatest.concurrent.Eventually
-import org.scalatest.{FreeSpec, Matchers}
+import org.scalatest.{DoNotDiscover, FreeSpec, Matchers}
 
 import scalaj.http.Http
 
 /**
   * Created by smakhetov on 31.08.2016.
   */
+@DoNotDiscover
 class ПервичнаяОтправкаСообщения extends FreeSpec with Eventually with Matchers {
 
   val conf = ConfigFactory.load

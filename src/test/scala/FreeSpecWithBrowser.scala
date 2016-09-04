@@ -9,7 +9,7 @@ import org.scalatest.time.SpanSugar._
 /**
   * Created by smakhetov on 11.04.2016.
   */
-trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with TimeLimits with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks{
+trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with TimeLimits with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks with CancelAfterFailure{
   //Настройки для блока "eventually", который пытается отловить элемент в течение "timeout" с интервалом "interval"
   //Без этого блока тест упадет просто не найдя элемента на странице
 
@@ -55,7 +55,6 @@ trait FreeSpecWithBrowserScaledScreen extends FreeSpecWithBrowser{
       case failed: Failed =>
         markup(s"""<a href ="$currentUrl">$currentUrl</a>""")
         createScreenCaptureToReport(scale = 100)
-        click on xpath(".//*[@id='vw-navbar']/div/div/ul[1]/li[1]/a")
         failed
       case other =>
         markup(s"""<a href ="$currentUrl">$currentUrl</a>""")

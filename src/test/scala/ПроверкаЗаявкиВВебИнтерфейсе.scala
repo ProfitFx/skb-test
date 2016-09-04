@@ -27,6 +27,8 @@ class ПроверкаЗаявкиВВебИнтерфейсе extends FreeSpecW
   }
 
 
+
+
   "Загрузка файла" in {
     Path("downloads").deleteRecursively(true,true)
     click on xpath("html/body/div[1]/div/div[4]/div[4]/div[4]/div[2]/a/span[4]/span[2]/span")
