@@ -32,5 +32,14 @@ val patt = "123".r
   val s = "01234512345"
   val m = patt.findAllMatchIn(s).toList
   m.foreach(a => println(a))
+}
 
+object mainApp3 extends App {
+  val resp = """{"Events":[{"BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab","PartyId":"25a6dc25-4796-45b8-81bd-c43a7ccac371","EventId":"36ceb7d4-eda0-4177-89fc-73a9bb959ba1","EventDateTime":"2016-09-05T19:53:01.9846399Z","EventType":"NewOutboxMessage","EventContent":{"OutboxMessageMeta":{"BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab","MessageId":"a4eb5ddb-2f6b-4806-a610-574eada37bc0","DocumentCirculationId":"8ab76f19-19ca-4420-a133-e60a65c54c57"}}},{"BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab","PartyId":"25a6dc25-4796-45b8-81bd-c43a7ccac371","EventId":"45c7948d-2da5-4b1e-858b-15eb726d2791","EventDateTime":"2016-09-05T19:53:02.2301358Z","EventType":"MessageUndelivered","EventContent":{"MessageUndeliveryReasons":["Точно такой же файл уже был недавно обработан (дублирующая отправка?)"],"OutboxMessageMeta":{"BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab","MessageId":"a4eb5ddb-2f6b-4806-a610-574eada37bc0","DocumentCirculationId":"8ab76f19-19ca-4420-a133-e60a65c54c57"}}}],"LastEventId":"45c7948d-2da5-4b1e-858b-15eb726d2791"}"""
+  val responseJson = parse(resp)
+  val events = (responseJson \ "Events").children
+  println(events.length)
+  println((events(0) \ "EventType").values.toString)
+  println((events(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString)
+//    println((events(1) \ "EventType").values.toString)
 }

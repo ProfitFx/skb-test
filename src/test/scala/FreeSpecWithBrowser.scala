@@ -10,7 +10,7 @@ import org.scalatest.time.SpanSugar._
 /**
   * Created by smakhetov on 11.04.2016.
   */
-trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with TimeLimits with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks with CancelAfterFailure{
+trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with TimeLimits with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks{
   //Настройки для блока "eventually", который пытается отловить элемент в течение "timeout" с интервалом "interval"
   //Без этого блока тест упадет просто не найдя элемента на странице
 
