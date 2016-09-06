@@ -2,8 +2,12 @@
   * Created by Enot on 26.08.2016.
   */
 
+import java.io.{FileWriter, FileReader}
+import java.util.Properties
+
 import org.json4s._
 import org.json4s.native.JsonMethods._
+
 import scalax.file.Path
 
 
@@ -20,7 +24,7 @@ object mainApp extends App {
 
 object mainApp1 extends App {
   val inJson = "{\n\t\"Events\" : [{\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"14f2fcf6-fc58-4552-96fe-396527b60823\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:23:52.3571751Z\",\n\t\t\t\"EventType\" : \"NewOutboxMessage\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"cc73de86-7411-47aa-940e-ca01c4ff9bc1\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"ed022dbf-ca8f-4278-8439-d6518f34d31e\"\n\t\t\t\t}\n\t\t\t}\n\t\t}, {\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"eba45512-42bc-4d7e-a176-425d3d3fb4d9\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:23:52.6158276Z\",\n\t\t\t\"EventType\" : \"MessageUndelivered\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"MessageUndeliveryReasons\" : [\"Точно такой же файл уже был недавно обработан (дублирующая отправка?)\"],\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"cc73de86-7411-47aa-940e-ca01c4ff9bc1\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"ed022dbf-ca8f-4278-8439-d6518f34d31e\"\n\t\t\t\t}\n\t\t\t}\n\t\t}, {\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"326aa038-6555-4656-9c89-6990b4bec211\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:37:05.912506Z\",\n\t\t\t\"EventType\" : \"NewOutboxMessage\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"ceec310f-348c-4f6d-b096-0e847f828539\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"c9b0e67b-7a75-409f-97f1-870bc5ebec3f\"\n\t\t\t\t}\n\t\t\t}\n\t\t}, {\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"f3ccbc65-20ae-4fef-8027-caad429e6381\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:37:06.1303699Z\",\n\t\t\t\"EventType\" : \"MessageUndelivered\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"MessageUndeliveryReasons\" : [\"Точно такой же файл уже был недавно обработан (дублирующая отправка?)\"],\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"ceec310f-348c-4f6d-b096-0e847f828539\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"c9b0e67b-7a75-409f-97f1-870bc5ebec3f\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t],\n\t\"LastEventId\" : \"f3ccbc65-20ae-4fef-8027-caad429e6381\"\n}"
- val responseJson = parse(inJson)
+  val responseJson = parse(inJson)
   val events = (responseJson \ "Events").children
   println(events.length)
   println((events(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString)
@@ -28,7 +32,7 @@ object mainApp1 extends App {
 }
 
 object mainApp2 extends App {
-val patt = "123".r
+  val patt = "123".r
   val s = "01234512345"
   val m = patt.findAllMatchIn(s).toList
   m.foreach(a => println(a))
@@ -41,5 +45,16 @@ object mainApp3 extends App {
   println(events.length)
   println((events(0) \ "EventType").values.toString)
   println((events(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString)
-//    println((events(1) \ "EventType").values.toString)
+  //    println((events(1) \ "EventType").values.toString)
+}
+
+object mainApp4 extends App {
+  val props = new Properties
+  val reader = new FileReader("1.properties")
+  props.load(reader)
+  var value = props.getProperty("key","defValue")
+  value = "100500"
+  props.setProperty("key", value)
+  val writer = new FileWriter("1.properties")
+  props.store(writer, "vsyo")
 }

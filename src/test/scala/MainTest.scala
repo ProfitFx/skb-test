@@ -1,13 +1,12 @@
-import java.io.{File, FileInputStream}
+import java.io.FileInputStream
 
 import com.typesafe.config.ConfigFactory
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.json4s.native.JsonMethods._
-import org.scalatest.CancelAfterFailure
+import org.scalatest.time.SpanSugar._
 
 import scalaj.http.{Http, HttpResponse}
 import scalax.file.Path
-import org.scalatest.time.SpanSugar._
 
 /**
   * Created by Enot on 04.09.2016.
@@ -28,8 +27,9 @@ class MainTest extends FreeSpecWithBrowserScaledScreen {//with CancelAfterFailur
   var id = conf.getString("client.id")
   val fileName = s"downloads/Черновик подтверждения заказа №$orderNumber от 04.12.2011.xlsx"
 
+  // Get запрос с авторизацией
   def getRequest(urlPath: String): HttpResponse[String] = Http(apiUrl + urlPath).header("Authorization", authHeader).asString
-
+  // Post запрос с авторизацией
   def postRequest(urlPath: String, postBody: String): HttpResponse[String] = Http(apiUrl + urlPath).header("Authorization", authHeader).postData(postBody).asString
 
 
