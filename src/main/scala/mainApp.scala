@@ -2,7 +2,7 @@
   * Created by Enot on 26.08.2016.
   */
 
-import java.io.{FileWriter, FileReader}
+import java.io.{PrintWriter, FileWriter, FileReader}
 import java.util.Properties
 
 import org.json4s._
@@ -57,4 +57,9 @@ object mainApp4 extends App {
   props.setProperty("key", value)
   val writer = new FileWriter("1.properties")
   props.store(writer, "vsyo")
+}
+
+object mainApp5 extends App {
+  new PrintWriter("filename.txt") { write("file contents"); close }
+  //reflect.io.File("report/response.json").writeAll("response")
 }
