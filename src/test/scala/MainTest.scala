@@ -3,6 +3,7 @@ import java.io.FileInputStream
 import com.typesafe.config.ConfigFactory
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.json4s.native.JsonMethods._
+import org.scalatest.DoNotDiscover
 import org.scalatest.time.SpanSugar._
 
 import scalaj.http.Http
@@ -11,6 +12,7 @@ import scalax.file.Path
 /**
   * Created by Enot on 04.09.2016.
   */
+@DoNotDiscover
 class MainTest extends FreeSpecWithBrowserScaledScreen {//with CancelAfterFailure{
 
   val conf = ConfigFactory.load
@@ -65,9 +67,6 @@ class MainTest extends FreeSpecWithBrowserScaledScreen {//with CancelAfterFailur
       val responseJson = parse(response)
       lastEventID = (responseJson \ "LastEventId").values.toString
       println(lastEventID)
-
-
-
     }
 
     "Отправка сообщения" in {

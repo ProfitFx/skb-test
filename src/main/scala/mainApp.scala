@@ -29,6 +29,9 @@ object mainApp1 extends App {
   println(events.length)
   println((events(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString)
   println((events(1) \ "EventType").values.toString)
+  val json = pretty(render(responseJson))
+  println(json)
+  new PrintWriter("filename.txt") { write(json); close }
 }
 
 object mainApp2 extends App {

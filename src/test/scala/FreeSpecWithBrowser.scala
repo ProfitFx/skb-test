@@ -1,10 +1,13 @@
+import java.io.PrintWriter
+
+import org.json4s
+import org.json4s.native.JsonMethods._
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.{FirefoxDriver, FirefoxProfile}
 import org.scalatest._
 import org.scalatest.concurrent.{Eventually, TimeLimits}
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.selenium.WebBrowser
-import org.scalatest.time.Seconds
 import org.scalatest.time.SpanSugar._
 
 /**
@@ -21,7 +24,8 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
 
   //implicit override val patienceConfig = PatienceConfig(timeout = scaled(Span(eventuallyTimeout, Seconds)), interval = scaled(Span(eventuallyInterval, Millis)))
   implicit override val patienceConfig = PatienceConfig(timeout = eventuallyTimeout seconds, interval = eventuallyInterval millis)
-  setCaptureDir("report")
+  val reportDir = "report"
+  setCaptureDir(reportDir)
   val firefoxProfile = new FirefoxProfile()
   firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
   firefoxProfile.setPreference("browser.download.folderList",2)
@@ -29,26 +33,30 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
   firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false)
   //firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.home") + "/Downloads/")
   firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.dir") + """\downloads\""")
-  implicit var webDriver: WebDriver = new FirefoxDriver(firefoxProfile)
+  implicit var webDriver: WebDriver = _
 
 
-override def beforeAll = {
-  //webDriver = new FirefoxDriver(firefoxProfile)
-  webDriver.manage().window().maximize()
-}
-
+  override def beforeAll = {
+    webDriver = new FirefoxDriver(firefoxProfile)
+    webDriver.manage().window().maximize()
+  }
 
   override def afterAll{//Код выполняется после всех шагов
     quit()
   }
-
 }
 
 trait FreeSpecWithBrowserScaledScreen extends FreeSpecWithBrowser{
 
   def createScreenCaptureToReport(fileName: String = System.currentTimeMillis + ".png", scale: Int = 25): Unit = {// Метод создает скрин с именем TimeStamp и вставляет его в отчет
     captureTo(fileName)
-    markup(s"<img src='$fileName' width='$scale%' />")
+    markup(s"<img src='$fileName' width='$scale%'/>")
+  }
+
+  def createJsonFileToReport(fileContent: json4s.JValue, operation: String, fileName: String = System.currentTimeMillis + ".json"): Unit = {
+    val json = pretty(render(fileContent))
+    new PrintWriter(s"$reportDir/$fileName") { write(json); close }
+    markup(s"""<a href='$fileName'>$operation json file</a>""")
   }
 
   override def withFixture(test: NoArgTest) = { // при падении делаем скриншот
@@ -58,8 +66,8 @@ trait FreeSpecWithBrowserScaledScreen extends FreeSpecWithBrowser{
         createScreenCaptureToReport(scale = 100)
         failed
       case other =>
-       // markup(s"""<a href ="$currentUrl">$currentUrl</a>""")
-       // createScreenCaptureToReport()
+        // markup(s"""<a href ="$currentUrl">$currentUrl</a>""")
+        // createScreenCaptureToReport()
         other
     }
   }
@@ -78,11 +86,5 @@ trait FreeSpecWithBrowserScaledScreen extends FreeSpecWithBrowser{
 // firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
 // firefoxProfile.setPreference("browser.download.dir", System.getProperty("user.home") + "/Downloads/");
 
-object mimeTypes {
-  //val s2 = "application/x-sh;image/prs.btif;application/vnd.businessobjects;application/x-bzip;application/x-bzip2;application/x-csh"
- // val s3 = "text/plain-bas;application/x-bcpio;application/octet-stream;image/bmp;application/x-bittorrent;application/vnd.rim.cod;application/vnd.blueice.multipass;application/vnd.bm"
- // val s3 = "application/vnd.rim.cod;application/vnd.blueice.multipass;application/vnd.bm"
-  val s4 = "application/octet-stream"
-  val s5 = "text/plain-bas;application/x-bcpio;application/x-bittorrent;image/bmp"
-}
+
 
