@@ -142,7 +142,7 @@ class ApiTest extends FreeSpec with Matchers {
 @DoNotDiscover
 class WebTest extends FreeSpecWithBrowserScaledScreen{
 
-  val conf = ConfigFactory.load
+ // val conf = ConfigFactory.load
   val baseUrl = conf.getString("web.url")
   val login = conf.getString("client.login")
   val password = conf.getString("client.password")

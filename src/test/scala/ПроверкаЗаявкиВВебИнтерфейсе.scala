@@ -1,4 +1,3 @@
-import com.typesafe.config.ConfigFactory
 import org.scalatest.DoNotDiscover
 
 import scalax.file.Path
@@ -11,7 +10,7 @@ import scalax.file.Path
 class ПроверкаЗаявкиВВебИнтерфейсе extends FreeSpecWithBrowserScaledScreen{
   val orderNumber = "NN04"
   // .//*[@id='ScrollFix']/div[4]/div[4]/div[4]/div[2]/a
-  val conf = ConfigFactory.load
+ // val conf = ConfigFactory.load
   val baseUrl = conf.getString("web.url")
   val login = conf.getString("client.login")
   val password = conf.getString("client.password")
