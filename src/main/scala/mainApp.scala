@@ -2,9 +2,11 @@
   * Created by Enot on 26.08.2016.
   */
 
-import java.io.{PrintWriter, FileWriter, FileReader}
-import java.util.Properties
+import java.io.{File, FileReader, FileWriter, PrintWriter}
+import java.text.SimpleDateFormat
+import java.util.{Calendar, Properties}
 
+import org.apache.poi.poifs.property.Child
 import org.json4s._
 import org.json4s.native.JsonMethods._
 
@@ -65,4 +67,104 @@ object mainApp4 extends App {
 object mainApp5 extends App {
   new PrintWriter("filename.txt") { write("file contents"); close }
   //reflect.io.File("report/response.json").writeAll("response")
+}
+
+object  mainApp6 extends App {
+  val jsonString = """{
+                     |	"Events" : [{
+                     |			"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |			"PartyId" : "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+                     |			"EventId" : "14f2fcf6-fc58-4552-96fe-396527b60823",
+                     |			"EventDateTime" : "2016-08-29T17:23:52.3571751Z",
+                     |			"EventType" : "NewOutboxMessage",
+                     |			"EventContent" : {
+                     |				"OutboxMessageMeta" : {
+                     |					"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |					"MessageId" : "cc73de86-7411-47aa-940e-ca01c4ff9bc1",
+                     |					"DocumentCirculationId" : "ed022dbf-ca8f-4278-8439-d6518f34d31e"
+                     |				}
+                     |			}
+                     |		}, {
+                     |			"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |			"PartyId" : "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+                     |			"EventId" : "eba45512-42bc-4d7e-a176-425d3d3fb4d9",
+                     |			"EventDateTime" : "2016-08-29T17:23:52.6158276Z",
+                     |			"EventType" : "MessageUndelivered",
+                     |			"EventContent" : {
+                     |				"MessageUndeliveryReasons" : ["Точно такой же файл уже был недавно обработан (дублирующая отправка?)"],
+                     |				"OutboxMessageMeta" : {
+                     |					"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |					"MessageId" : "cc73de86-7411-47aa-940e-ca01c4ff9bc1",
+                     |					"DocumentCirculationId" : "ed022dbf-ca8f-4278-8439-d6518f34d31e"
+                     |				}
+                     |			}
+                     |		}, {
+                     |			"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |			"PartyId" : "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+                     |			"EventId" : "326aa038-6555-4656-9c89-6990b4bec211",
+                     |			"EventDateTime" : "2016-08-29T17:37:05.912506Z",
+                     |			"EventType" : "NewOutboxMessage",
+                     |			"EventContent" : {
+                     |				"OutboxMessageMeta" : {
+                     |					"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |					"MessageId" : "ceec310f-348c-4f6d-b096-0e847f828539",
+                     |					"DocumentCirculationId" : "c9b0e67b-7a75-409f-97f1-870bc5ebec3f"
+                     |				}
+                     |			}
+                     |		}, {
+                     |			"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |			"PartyId" : "25a6dc25-4796-45b8-81bd-c43a7ccac371",
+                     |			"EventId" : "f3ccbc65-20ae-4fef-8027-caad429e6381",
+                     |			"EventDateTime" : "2016-08-29T17:37:06.1303699Z",
+                     |			"EventType" : "MessageUndelivered",
+                     |			"EventContent" : {
+                     |				"MessageUndeliveryReasons" : ["Точно такой же файл уже был недавно обработан (дублирующая отправка?)"],
+                     |				"OutboxMessageMeta" : {
+                     |					"BoxId" : "e4e8b56d-3390-4e29-b7f5-169a83efacab",
+                     |					"MessageId" : "ceec310f-348c-4f6d-b096-0e847f828539",
+                     |					"DocumentCirculationId" : "c9b0e67b-7a75-409f-97f1-870bc5ebec3f"
+                     |				}
+                     |			}
+                     |		}
+                     |	],
+                     |	"LastEventId" : "f3ccbc65-20ae-4fef-8027-caad429e6381"
+                     |}
+                     |"""
+
+  val jsonStr = "{\n\t\"Events\" : [{\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"14f2fcf6-fc58-4552-96fe-396527b60823\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:23:52.3571751Z\",\n\t\t\t\"EventType\" : \"NewOutboxMessage\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"cc73de86-7411-47aa-940e-ca01c4ff9bc1\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"ed022dbf-ca8f-4278-8439-d6518f34d31e\"\n\t\t\t\t}\n\t\t\t}\n\t\t}, {\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"eba45512-42bc-4d7e-a176-425d3d3fb4d9\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:23:52.6158276Z\",\n\t\t\t\"EventType\" : \"MessageUndelivered\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"MessageUndeliveryReasons\" : [\"Точно такой же файл уже был недавно обработан (дублирующая отправка?)\"],\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"cc73de86-7411-47aa-940e-ca01c4ff9bc1\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"ed022dbf-ca8f-4278-8439-d6518f34d31e\"\n\t\t\t\t}\n\t\t\t}\n\t\t}, {\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"326aa038-6555-4656-9c89-6990b4bec211\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:37:05.912506Z\",\n\t\t\t\"EventType\" : \"NewOutboxMessage\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"ceec310f-348c-4f6d-b096-0e847f828539\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"c9b0e67b-7a75-409f-97f1-870bc5ebec3f\"\n\t\t\t\t}\n\t\t\t}\n\t\t}, {\n\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\"PartyId\" : \"25a6dc25-4796-45b8-81bd-c43a7ccac371\",\n\t\t\t\"EventId\" : \"f3ccbc65-20ae-4fef-8027-caad429e6381\",\n\t\t\t\"EventDateTime\" : \"2016-08-29T17:37:06.1303699Z\",\n\t\t\t\"EventType\" : \"MessageUndelivered\",\n\t\t\t\"EventContent\" : {\n\t\t\t\t\"MessageUndeliveryReasons\" : [\"Точно такой же файл уже был недавно обработан (дублирующая отправка?)\"],\n\t\t\t\t\"OutboxMessageMeta\" : {\n\t\t\t\t\t\"BoxId\" : \"e4e8b56d-3390-4e29-b7f5-169a83efacab\",\n\t\t\t\t\t\"MessageId\" : \"ceec310f-348c-4f6d-b096-0e847f828539\",\n\t\t\t\t\t\"DocumentCirculationId\" : \"c9b0e67b-7a75-409f-97f1-870bc5ebec3f\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t],\n\t\"LastEventId\" : \"f3ccbc65-20ae-4fef-8027-caad429e6381\"\n}"
+  val json = parse(jsonStr)
+
+  val events = (json \ "Events")
+  val child = events.children
+//  println(child)
+//  child.foreach(x => println(x \ "EventContent"))
+ child.foreach(x => println((x \ "EventContent" \ "OutboxMessageMeta"\"MessageId").values))
+
+  //val x = child.head
+  //val newChild = child.filter((_\ "EventContent" \ "OutboxMessageMeta"\"MessageId").values == "123")
+ val newChildList = child.filter(x => {(x \ "EventContent" \ "OutboxMessageMeta"\"MessageId").values =="ceec310f-348c-4f6d-b096-0e847f828539"})
+
+  println(newChildList.length)
+
+}
+
+object  mainApp7 extends App {
+  val jsonString = """{
+                     |  "BoxId": "bccbecfb-a370-4f17-8873-8e05aaeb0bdc",
+                     |  "MessageId": "9c2dccda-8899-45cf-bffc-80240bace7fb",
+                     |  "DocumentCirculationId": "f89dfb2d-d218-4cc2-8cb5-e3f879ae05cc"
+                     |}
+                     |"""
+
+  val jsonStr = "{\n  \"BoxId\": \"bccbecfb-a370-4f17-8873-8e05aaeb0bdc\",\n  \"MessageId\": \"9c2dccda-8899-45cf-bffc-80240bace7fb\",\n  \"DocumentCirculationId\": \"f89dfb2d-d218-4cc2-8cb5-e3f879ae05cc\"\n}"
+  val json = parse(jsonStr)
+  val events = (json \ "MessageId").values
+  println(events)
+}
+
+object mainApp8 extends App {
+  val theDir = new File("tst")
+  if (!theDir.exists()) theDir.mkdir()
+  val format = new SimpleDateFormat("yyyyMMdd_HHmm")
+  println(format.format(Calendar.getInstance.getTime))
 }

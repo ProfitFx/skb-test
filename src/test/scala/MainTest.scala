@@ -10,6 +10,7 @@ import scalaj.http.Http
 /**
   * Created by Enot on 04.09.2016.
   */
+@DoNotDiscover
 class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
 
   val webUrl = conf.getString("web.url")
@@ -23,6 +24,8 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
   val postBody = scala.io.Source.fromFile("testFiles/orders.txt").mkString.replaceFirst("NN00",orderNumber)
   var authHeader = ""
   var lastEventID = ""
+  var messageId = ""
+
 
   // Get запрос с авторизацией
   def getRequest(urlPath: String) = Http(apiUrl + urlPath).header("Authorization", authHeader).asString.body
@@ -47,7 +50,7 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
     }
   }
 
-  "Отправка нового сообщения" - {
+  "Отправка нового сообщения c заказом" - {
 
     "Получение токена авторизации и формирование заголовка для последующих вызовов API" in {
       val firstAuthHeader = s"KonturEdiAuth konturediauth_api_client_id=$id, konturediauth_login=$login, konturediauth_password=$password"
@@ -60,33 +63,37 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
       val responseJson = parse(response)
       createJsonFileToReport(responseJson)
       lastEventID = (responseJson \ "LastEventId").values.toString
+
     }
 
     "Отправка сообщения" in {
       val response = postRequest(s"/Messages/SendMessage?boxId=$boxId",postBody)
       val responseJson = parse(response)
       createJsonFileToReport(responseJson)
+      messageId = (responseJson \ "MessageId").values.toString
     }
 
     "Получение событий ящика и проверка успешности доставки" in {
       eventually(timeout(20 seconds), interval(1000 millis)) {
         val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventID")
         val responseJson = parse(response)
-        val events = (responseJson \ "Events").children
-        // Проверка событий в ответном сообщении
-        events.length should be (4)
-        (events(0) \ "EventType").values.toString should be("NewOutboxMessage")
-        (events(1) \ "EventType").values.toString should be("RecognizeMessage")
-        (events(2) \ "EventType").values.toString should be("MessageDelivered")
-        (events(3) \ "EventType").values.toString should be("MessageReadByPartner")
-        lastEventID = (responseJson \ "LastEventId").values.toString
         createJsonFileToReport(responseJson)
+        val allEvents = (responseJson \ "Events").children
+        val msgEvents = allEvents.filter(x => {(x \ "EventContent" \ "OutboxMessageMeta"\"MessageId").values == messageId})
+        // Проверка событий в ответном сообщении
+        msgEvents.length should be (4)
+        (msgEvents(0) \ "EventType").values.toString should be("NewOutboxMessage")
+        (msgEvents(1) \ "EventType").values.toString should be("RecognizeMessage")
+        (msgEvents(2) \ "EventType").values.toString should be("MessageDelivered")
+        (msgEvents(3) \ "EventType").values.toString should be("MessageReadByPartner")
+        lastEventID = (responseJson \ "LastEventId").values.toString
+
       }
     }
   }
 
   "Проверка наличия записи в интерфейсе пользователя" in {
-    eventually(timeout(30 seconds), interval(1000 millis)){
+    eventually(timeout(20 seconds), interval(1000 millis)){
       reloadPage()
       find(xpath(s"//*[contains(text(), '$orderNumber')]")) should not be ('isEmpty)
       createScreenCaptureToReport()
@@ -116,7 +123,6 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
         (0,18,2, "GoodItem1"),
         (0,21,2, "GoodItme3")
       )
-
       // Для каждой строки таблицы проверяем соответствие ожидаемого и действительного значений
       forAll(excelCheckTable) {(sheet: Int,row: Int,col: Int,value: String) =>
         cellValue(sheet,row,col) should be (value)
@@ -131,18 +137,21 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
       val response = postRequest(s"/Messages/SendMessage?boxId=$boxId", postBody)
       val responseJson = parse(response)
       createJsonFileToReport(responseJson)
+      messageId = (responseJson \ "MessageId").values.toString
     }
 
     "Получение событий ящика и проверка дубликата" in {
-      eventually(timeout(10 seconds), interval(1000 millis)) {
+      eventually(timeout(20 seconds), interval(1000 millis)) {
         val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventID")
         val responseJson = parse(response)
-        val events = (responseJson \ "Events").children
-        events.length should be (2)
-        (events(0) \ "EventType").values.toString should be ("NewOutboxMessage")
-        (events(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString should be ("Точно такой же файл уже был недавно обработан (дублирующая отправка?)")
-        (events(1) \ "EventType").values.toString should be ("MessageUndelivered")
         createJsonFileToReport(responseJson)
+        val allEvents = (responseJson \ "Events").children
+        val msgEvents = allEvents.filter(x => {(x \ "EventContent" \ "OutboxMessageMeta"\"MessageId").values == messageId})
+        msgEvents.length should be (2)
+        (msgEvents(0) \ "EventType").values.toString should be ("NewOutboxMessage")
+        (msgEvents(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString should be ("Точно такой же файл уже был недавно обработан (дублирующая отправка?)")
+        (msgEvents(1) \ "EventType").values.toString should be ("MessageUndelivered")
+
       }
     }
   }

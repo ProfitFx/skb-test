@@ -1,8 +1,19 @@
+import java.text.SimpleDateFormat
+import java.util.Calendar
+
 name := "skb-test"
 
 version := "1.0"
 
 scalaVersion := "2.11.8"
+
+val timestamp = System.currentTimeMillis.toString
+
+val d = "dir1"
+val rootTestReportDir = "reports"
+val localTestReportDir = "report"
+val reportTime = new SimpleDateFormat("_yyyyMMdd_HHmm").format(Calendar.getInstance.getTime)
+val testReportDir = s"$rootTestReportDir/$localTestReportDir$reportTime"
 
 libraryDependencies ++= Seq(
   "org.scalatest" % "scalatest_2.11" % "3.0.0" % "test->*",
@@ -17,8 +28,33 @@ libraryDependencies ++= Seq(
   "com.github.scala-incubator.io" % "scala-io-file_2.11" % "0.4.3-1"
 )
 
+
+
 //Опции для создания отчета в формате html "-h" в папке "report" и текстового файла "-f" "report.txt" без поддержки цвета "W"(потому как в винде выглядит коряво)
-testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-hD", "report", "-fW", "report.txt")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-hD", testReportDir, "-fW", s"$testReportDir.txt")
+
+////testOptions in Test += Tests.Setup( () => {System.setProperty("testReportDir", testDir); System.setProperty("testReportDir1", "123534") })
+//testOptions in Test += Tests.Setup(() => {
+//  //  val absPath = s"${baseDirectory.value}/$rootTestReportDir"
+//  //  val dir = new File(absPath)
+//  println(baseDirectory.value)
+//  //  if (!dir.exists) {dir.mkdir}
+//  System.setProperty("testReportDir", testReportDir)
+//})
+
+
+lazy val createReportDir = taskKey[Unit]("Create report dir if no exist")
+createReportDir := {
+  //  val absPath = s"${baseDirectory.value}/$rootTestReportDir"
+  val dir = new File(rootTestReportDir)
+  if (!dir.exists) {dir.mkdir}
+  System.setProperty("testReportDir", testReportDir)
+}
+
+test in Test := {
+  createReportDir.value
+  (test in Test).value
+}
 
 //http://ftp.mozilla.org/pub/firefox/releases/47.0.1/win32/ru/
 
@@ -26,5 +62,5 @@ testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-hD", "report",
 //libraryDependencies += "org.pegdown" % "pegdown" % "1.6.0"
 //assemblyOutputPath in assembly := baseDirectory.value / "tests.jar"
 
-cleanFiles <+= baseDirectory { base => base / "report" }
-cleanFiles <+= baseDirectory { base => base / "report.txt" }
+//cleanFiles <+= baseDirectory { base => base / "report" }
+//cleanFiles <+= baseDirectory { base => base / "report.txt" }
