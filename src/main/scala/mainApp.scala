@@ -55,13 +55,12 @@ object mainApp3 extends App {
 
 object mainApp4 extends App {
   val props = new Properties
-  val reader = new FileReader("1.properties")
-  props.load(reader)
-  var value = props.getProperty("key","defValue")
-  value = "100500"
-  props.setProperty("key", value)
-  val writer = new FileWriter("1.properties")
-  props.store(writer, "vsyo")
+  //val reader = new FileReader("lastEventId.properties")
+  props.load(new FileReader("lastEventId.properties"))
+  var value = props.getProperty("lastEventId","d2826bb8-e129-4d30-a655-a29338abf1f7")
+  props.setProperty("lastEventId", value)
+//  val writer = new FileWriter("lastEventId.properties")
+  props.store(new FileWriter("lastEventId.properties"), "Last box event")
 }
 
 object mainApp5 extends App {
@@ -168,3 +167,4 @@ object mainApp8 extends App {
   val format = new SimpleDateFormat("yyyyMMdd_HHmm")
   println(format.format(Calendar.getInstance.getTime))
 }
+

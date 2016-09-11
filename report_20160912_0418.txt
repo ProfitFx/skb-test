@@ -1,0 +1,73 @@
+Run starting. Expected test count is: 0
+MainTest:
+Проверка отсутствия записи в интерфейсе пользователя
+- Авторизация на странице https://test-edi.kontur.ru/25a6dc25-4796-45b8-81bd-c43a7ccac371/Supplier
+  + <img src='1473635920963.png' width='25%'/>
+- Проверка остутствия строки заявки на странице "Новые заявки"
+  + <img src='1473635923675.png' width='25%'/>
+Отправка нового сообщения c заказом
+- Получение токена авторизации и формирование заголовка для последующих вызовов API
+- Получение идентификатора последнего события в ящике
+  + <a href='1473635925192.json'>Ответное json сообщение</a>
+- Отправка сообщения
+  + <a href='1473635925396.json'>Ответное json сообщение</a>
+- Получение событий ящика и проверка успешности доставки *** FAILED ***
+  The code passed to eventually never returned normally. Attempted 22 times over 20.020287076 seconds. Last failure message: 3 was not equal to 4. (MainTest.scala:94)
+  + <a href='1473635925523.json'>Ответное json сообщение</a>
+  + <a href='1473635925766.json'>Ответное json сообщение</a>
+  + <a href='1473635925980.json'>Ответное json сообщение</a>
+  + <a href='1473635926206.json'>Ответное json сообщение</a>
+  + <a href='1473635926425.json'>Ответное json сообщение</a>
+  + <a href='1473635927547.json'>Ответное json сообщение</a>
+  + <a href='1473635928669.json'>Ответное json сообщение</a>
+  + <a href='1473635929792.json'>Ответное json сообщение</a>
+  + <a href='1473635930914.json'>Ответное json сообщение</a>
+  + <a href='1473635932037.json'>Ответное json сообщение</a>
+  + <a href='1473635933158.json'>Ответное json сообщение</a>
+  + <a href='1473635934278.json'>Ответное json сообщение</a>
+  + <a href='1473635935392.json'>Ответное json сообщение</a>
+  + <a href='1473635936508.json'>Ответное json сообщение</a>
+  + <a href='1473635937619.json'>Ответное json сообщение</a>
+  + <a href='1473635938733.json'>Ответное json сообщение</a>
+  + <a href='1473635939847.json'>Ответное json сообщение</a>
+  + <a href='1473635940961.json'>Ответное json сообщение</a>
+  + <a href='1473635942078.json'>Ответное json сообщение</a>
+  + <a href='1473635943190.json'>Ответное json сообщение</a>
+  + <a href='1473635944307.json'>Ответное json сообщение</a>
+  + <a href='1473635945425.json'>Ответное json сообщение</a>
+  + <img src='1473635945440.png' width='100%'/>
+- Проверка наличия записи в интерфейсе пользователя
+  + <img src='1473635949326.png' width='25%'/>
+Проверка содержимого Excel файла
+- Загрузка файла
+  + <a href='Черновик подтверждения заказа №NN05 от 04.12.2011.xlsx'>Файл Excel</a>
+  + <img src='1473635953979.png' width='25%'/>
+- Проверка значений в таблице Excel *** FAILED ***
+  java.io.FileNotFoundException: Черновик подтверждения заказа №NN05 от 04.12.2011.xlsx (Не удается найти указанный файл)
+  at java.io.FileInputStream.open0(Native Method)
+  at java.io.FileInputStream.open(Unknown Source)
+  at java.io.FileInputStream.<init>(Unknown Source)
+  at java.io.FileInputStream.<init>(Unknown Source)
+  at MainTest$$anonfun$4$$anonfun$apply$mcV$sp$12.apply$mcV$sp(MainTest.scala:137)
+  at MainTest$$anonfun$4$$anonfun$apply$mcV$sp$12.apply(MainTest.scala:136)
+  at MainTest$$anonfun$4$$anonfun$apply$mcV$sp$12.apply(MainTest.scala:136)
+  at org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)
+  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+  at org.scalatest.Transformer.apply(Transformer.scala:22)
+  ...
+  + <img src='1473635954253.png' width='100%'/>
+Проверка повторной отправки
+- Отправка сообщения повторно
+  + <a href='1473635954710.json'>Ответное json сообщение</a>
+- Получение событий ящика и проверка дубликата
+  + <a href='1473635954830.json'>Ответное json сообщение</a>
+  + <a href='1473635955043.json'>Ответное json сообщение</a>
+  + <a href='1473635955258.json'>Ответное json сообщение</a>
+  + <a href='1473635955480.json'>Ответное json сообщение</a>
+  + <a href='1473635955701.json'>Ответное json сообщение</a>
+  + <a href='1473635956872.json'>Ответное json сообщение</a>
+Run completed in 46 seconds, 900 milliseconds.
+Total number of tests run: 11
+Suites: completed 1, aborted 0
+Tests: succeeded 9, failed 2, canceled 0, ignored 0, pending 0
+*** 2 TESTS FAILED ***

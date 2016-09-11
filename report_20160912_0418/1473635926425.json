@@ -1,0 +1,33 @@
+{
+  "Events":[{
+    "BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab",
+    "PartyId":"25a6dc25-4796-45b8-81bd-c43a7ccac371",
+    "EventId":"13c21669-faf2-4890-9095-6e409bc53318",
+    "EventDateTime":"2016-09-11T23:19:33.6903885Z",
+    "EventType":"NewOutboxMessage",
+    "EventContent":{
+      "OutboxMessageMeta":{
+        "BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab",
+        "MessageId":"967dff30-77b7-4db5-97b3-fbd358733f68",
+        "DocumentCirculationId":"7e963b16-c099-488c-ab3d-631e61eedb7d"
+      }
+    }
+  },{
+    "BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab",
+    "PartyId":"25a6dc25-4796-45b8-81bd-c43a7ccac371",
+    "EventId":"878e85ff-6889-4d7f-9173-5abf1cd3eaf1",
+    "EventDateTime":"2016-09-11T23:19:33.8621624Z",
+    "EventType":"RecognizeMessage",
+    "EventContent":{
+      "DocumentType":"Orders",
+      "SenderPartyId":"ce0e689e-9f1f-4e9a-a113-a68dda559832",
+      "RecipientPartyId":"25a6dc25-4796-45b8-81bd-c43a7ccac371",
+      "OutboxMessageMeta":{
+        "BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab",
+        "MessageId":"967dff30-77b7-4db5-97b3-fbd358733f68",
+        "DocumentCirculationId":"7e963b16-c099-488c-ab3d-631e61eedb7d"
+      }
+    }
+  }],
+  "LastEventId":"878e85ff-6889-4d7f-9173-5abf1cd3eaf1"
+}

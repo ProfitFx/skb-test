@@ -1,4 +1,5 @@
-import java.io.FileInputStream
+import java.io.{FileInputStream, FileReader, FileWriter}
+import java.util.Properties
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.json4s.native.JsonMethods._
@@ -10,21 +11,26 @@ import scalaj.http.Http
 /**
   * Created by Enot on 04.09.2016.
   */
-@DoNotDiscover
+
 class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
 
+  // Адреса ресурсов и реквизиты доступа
   val webUrl = conf.getString("web.url")
   val login = conf.getString("client.login")
   val password = conf.getString("client.password")
-  val orderNumber = conf.getString("testData.orderNumber")
   val boxId = conf.getString("api.boxId")
   val apiUrl = conf.getString("api.url")
   val id = conf.getString("client.id")
-  val excelFileName = s"$downloadDir/Черновик подтверждения заказа №$orderNumber от 04.12.2011.xlsx"
+  // Переменные для проверок
+  val orderNumber = conf.getString("testData.orderNumber")
+  val excelFileName = s"Черновик подтверждения заказа №$orderNumber от 04.12.2011.xlsx"
   val postBody = scala.io.Source.fromFile("testFiles/orders.txt").mkString.replaceFirst("NN00",orderNumber)
-  var authHeader = ""
-  var lastEventID = ""
   var messageId = ""
+  var authHeader = ""
+  // Данные для записи и чтения lastEventId
+  val props = new Properties
+  props.load(new FileReader("lastEventId.properties"))
+  var lastEventId = props.getProperty("lastEventId","d2826bb8-e129-4d30-a655-a29338abf1f7")
 
 
   // Get запрос с авторизацией
@@ -42,13 +48,25 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
       emailField(xpath("//input[@name='login']")).value = login
       pwdField(xpath("//input[@name='']")).value = password
       click on xpath("//div[2]/input")
+      eventually{
+        pageTitle should be ("Новые заявки")
+      }
+      createScreenCaptureToReport()
+
     }
 
     """Проверка остутствия строки заявки на странице "Новые заявки"""" in {
-      find(xpath(s"//*[contains(text(), '$orderNumber')]")) should be ('isEmpty)
+
+      if (!find(id("Search")).get.isDisplayed){click on id("FilterShow")}
+      textField(id("SearchPanel_OrdersNumber")).value = orderNumber
+      click on id("Search")
+      eventually {
+        find(xpath(".//*[@id='Filter']/div[2]")).get.text should include("Фильтрация: найдено 0 заявок")
+      }
       createScreenCaptureToReport()
     }
   }
+
 
   "Отправка нового сообщения c заказом" - {
 
@@ -59,11 +77,10 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
     }
 
     "Получение идентификатора последнего события в ящике" in {
-      val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&count=1000")
+      val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventId&count=1000")
       val responseJson = parse(response)
       createJsonFileToReport(responseJson)
-      lastEventID = (responseJson \ "LastEventId").values.toString
-
+      lastEventId = (responseJson \ "LastEventId").values.toString
     }
 
     "Отправка сообщения" in {
@@ -75,7 +92,7 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
 
     "Получение событий ящика и проверка успешности доставки" in {
       eventually(timeout(20 seconds), interval(1000 millis)) {
-        val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventID")
+        val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventId")
         val responseJson = parse(response)
         createJsonFileToReport(responseJson)
         val allEvents = (responseJson \ "Events").children
@@ -86,7 +103,7 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
         (msgEvents(1) \ "EventType").values.toString should be("RecognizeMessage")
         (msgEvents(2) \ "EventType").values.toString should be("MessageDelivered")
         (msgEvents(3) \ "EventType").values.toString should be("MessageReadByPartner")
-        lastEventID = (responseJson \ "LastEventId").values.toString
+        lastEventId = (responseJson \ "LastEventId").values.toString
 
       }
     }
@@ -103,12 +120,16 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
   "Проверка содержимого Excel файла" - {
 
     "Загрузка файла" in {
-      clickOn(xpath(s"//*[contains(text(), '$orderNumber')]"))
-      click on xpath("//a[@id='ExcelPrintLink']/span[2]")
-      eventually{
-        new java.io.File(excelFileName) should be ('exists)
+      eventually {
+        click on xpath(s"//*[contains(text(), '$orderNumber')]")
       }
-      markup(s"""<a href='..\$excelFileName'>Файл Excel</a>""")
+      eventually {
+        click on xpath("//a[@id='ExcelPrintLink']/span[2]")
+      }
+      eventually{
+        new java.io.File(s"$reportDir/$excelFileName") should be ('exists)
+      }
+      markup(s"""<a href='$excelFileName'>Файл Excel</a>""")
       createScreenCaptureToReport()
     }
 
@@ -142,7 +163,7 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
 
     "Получение событий ящика и проверка дубликата" in {
       eventually(timeout(20 seconds), interval(1000 millis)) {
-        val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventID")
+        val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventId")
         val responseJson = parse(response)
         createJsonFileToReport(responseJson)
         val allEvents = (responseJson \ "Events").children
@@ -152,6 +173,9 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
         (msgEvents(1) \ "EventContent" \ "MessageUndeliveryReasons").children.head.values.toString should be ("Точно такой же файл уже был недавно обработан (дублирующая отправка?)")
         (msgEvents(1) \ "EventType").values.toString should be ("MessageUndelivered")
 
+        lastEventId = (responseJson \ "LastEventId").values.toString
+        props.setProperty("lastEventId", lastEventId)
+        props.store(new FileWriter("lastEventId.properties"), "Last box event")
       }
     }
   }
