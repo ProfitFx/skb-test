@@ -91,7 +91,6 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
         val allEvents = (responseJson \ "Events").children
         val msgEvents = allEvents.filter(x => {(x \ "EventContent" \ "OutboxMessageMeta"\"MessageId").values == messageId})
         // Проверка событий в ответном сообщении
-        // msgEvents.length should be (4)
         msgEvents.length should be (3)
         (msgEvents(0) \ "EventType").values.toString should be("NewOutboxMessage")
         (msgEvents(1) \ "EventType").values.toString should be("RecognizeMessage")
