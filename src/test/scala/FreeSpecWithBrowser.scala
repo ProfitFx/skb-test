@@ -14,11 +14,11 @@ import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.selenium.WebBrowser
 import org.scalatest.time.SpanSugar._
 
-import scalax.file.Path
-
 /**
   * Created by smakhetov on 11.04.2016.
   */
+
+//В трейте реализованы базовые методы для тестов
 trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Eventually with TimeLimits with BeforeAndAfter with BeforeAndAfterAll with TableDrivenPropertyChecks{
 
   val conf = ConfigFactory.load
@@ -27,7 +27,6 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
   val eventuallyInterval = conf.getInt("eventually.interval") // Милисекунд
   val browserType = conf.getInt("browser")
   val browserDownloadDir = (System.getProperty("user.dir") + "/" + reportDir).replace("/","\\")
-  //println(browserDownloadDir)
   // Настройки для блока "eventually", который пытается отловить элемент в течение "timeout" с интервалом "interval"
   implicit override val patienceConfig: PatienceConfig = PatienceConfig(timeout = eventuallyTimeout seconds, interval = eventuallyInterval millis)
   // Указание папки для скриншотов
@@ -84,10 +83,12 @@ trait FreeSpecWithBrowser extends FreeSpec with Matchers with WebBrowser with Ev
     markup(s"""<a href='$fileName'>$description</a>""")
   }
 
-  // При падении делаем скриншот окна браузера
+
+// Блок выполняет различные действия в зависимости от статуса прохождения шага теста
   override def withFixture(test: NoArgTest) = {
     super.withFixture(test) match {
       case failed: Failed =>
+        // При падении делаем скриншот окна браузера
         createScreenCaptureToReport(scale = 100)
         failed
       case other =>

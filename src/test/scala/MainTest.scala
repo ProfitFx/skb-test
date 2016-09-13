@@ -27,9 +27,10 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
   var messageId = ""
   var authHeader = ""
   // Данные для записи и чтения lastEventId
+  val propsFileName = "lastEventId.properties"
   val props = new Properties
-  props.load(new FileReader("lastEventId.properties"))
-  var lastEventId = props.getProperty("lastEventId","d2826bb8-e129-4d30-a655-a29338abf1f7")
+  props.load(new FileReader(propsFileName))
+  var lastEventId = props.getProperty("lastEventId","1c40b7d0-61c5-4fb7-b5c0-a41e9513e9e4")
 
 
   // Get запрос с авторизацией
@@ -48,14 +49,13 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
       pwdField(xpath("//input[@name='']")).value = password
       click on xpath("//div[2]/input")
       eventually{
+        // Проверка title страницы
         pageTitle should be ("Новые заявки")
       }
       createScreenCaptureToReport()
-
     }
 
     """Проверка остутствия строки заявки на странице "Новые заявки"""" in {
-
       if (!find(id("Search")).get.isDisplayed){click on id("FilterShow")}
       textField(id("SearchPanel_OrdersNumber")).value = orderNumber
       click on id("Search")
@@ -75,12 +75,12 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
       authHeader = s"KonturEdiAuth konturediauth_api_client_id=$id, konturediauth_token=$token"
     }
 
-//    "Получение идентификатора последнего события в ящике" in {
-//      val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventId&count=1000")
-//      val responseJson = parse(response)
-//      createJsonFileToReport(responseJson)
-//      lastEventId = (responseJson \ "LastEventId").values.toString
-//    }
+    //    "Получение идентификатора последнего события в ящике" in {
+    //      val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventId&count=1000")
+    //      val responseJson = parse(response)
+    //      createJsonFileToReport(responseJson)
+    //      lastEventId = (responseJson \ "LastEventId").values.toString
+    //    }
 
     "Отправка сообщения" in {
       val response = postRequest(s"/Messages/SendMessage?boxId=$boxId",postBody)
@@ -97,14 +97,12 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
         val allEvents = (responseJson \ "Events").children
         val msgEvents = allEvents.filter(x => {(x \ "EventContent" \ "OutboxMessageMeta"\"MessageId").values == messageId})
         // Проверка событий в ответном сообщении
-       // msgEvents.length should be (4)
+        // msgEvents.length should be (4)
         msgEvents.length should be (3)
         (msgEvents(0) \ "EventType").values.toString should be("NewOutboxMessage")
         (msgEvents(1) \ "EventType").values.toString should be("RecognizeMessage")
         (msgEvents(2) \ "EventType").values.toString should be("MessageDelivered")
-       // (msgEvents(3) \ "EventType").values.toString should be("MessageReadByPartner")
         lastEventId = (responseJson \ "LastEventId").values.toString
-
       }
     }
   }
@@ -175,7 +173,7 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
 
         lastEventId = (responseJson \ "LastEventId").values.toString
         props.setProperty("lastEventId", lastEventId)
-        props.store(new FileWriter("lastEventId.properties"), "Last box event")
+        props.store(new FileWriter(propsFileName), "Last box event")
       }
     }
   }
