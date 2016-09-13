@@ -1,0 +1,29 @@
+{
+  "Events":[{
+    "BoxId":"e4e8b56d-3390-4e29-b7f5-169a83efacab",
+    "PartyId":"25a6dc25-4796-45b8-81bd-c43a7ccac371",
+    "EventId":"e0a9479a-8e6e-451a-8c25-afb88151250d",
+    "EventDateTime":"2016-09-13T17:40:32.9674077Z",
+    "EventType":"ProcessingTimesReport",
+    "EventContent":{
+      "DocumentCirculationId":"96b58ddc-b9e5-4404-970b-a4d60efa2578",
+      "SenderPartyId":null,
+      "RecipientPartyId":null,
+      "InitialMessageId":"ce92f9c5-62db-40ca-88a9-a0b85879bafe",
+      "InitialDocumentId":null,
+      "DocumentType":"Unknown",
+      "DocumentCirculationStartTimestamp":"2016-09-13T17:39:34.5284351Z",
+      "DocumentCirculationCompletionTimestamp":"2016-09-13T17:39:35.8396553Z",
+      "ProcessingTimes":{
+        "TotalWorkTime":"00:00:01.3112202",
+        "DeliveryTime":null,
+        "ConnectorWorkTime":null,
+        "ConnectorWaitTime":null,
+        "DiadocWaitTime":null,
+        "RecadvWaitTime":null,
+        "DeliveryNotificationWaitTime":null
+      }
+    }
+  }],
+  "LastEventId":"e0a9479a-8e6e-451a-8c25-afb88151250d"
+}

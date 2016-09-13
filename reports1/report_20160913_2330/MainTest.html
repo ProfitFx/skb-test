@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+      <head>
+        <title>ScalaTest Suite MainTest Results</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="Expires" content="-1"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+        
+        <script type="text/javascript">
+          function toggleDetails(contentId, linkId) {
+  var ele = document.getElementById(contentId);
+  var text = document.getElementById(linkId);
+  if(ele.style.display == "block") {
+    ele.style.display = "none";
+    text.innerHTML = "(Show Details)";
+  }
+  else {
+    ele.style.display = "block";
+    text.innerHTML = "(Hide Details)";
+  }
+}
+function hideOpenInNewTabIfRequired() {
+  if (top === self) { document.getElementById('printlink').style.display = 'none'; }
+}
+
+        </script>
+      </head>
+      <body class="specification">
+        <div id="suite_header_name">MainTest</div>
+        <div id="suite_header_statistic_failed">
+          Tests: total 10, succeeded 8, failed 2, canceled 0, ignored 0, pending 0
+        </div>
+        <div id="85bf6233-d44e-4475-b38c-4dc06edf0024" class="scope" style="margin-left: 0px;">
+      Проверка отсутствия записи в интерфейсе пользователя
+    </div><div id="8dd2781e-aa84-4426-bbd8-e8ea6bbece59" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Авторизация на странице https://test-edi.kontur.ru/25a6dc25-4796-45b8-81bd-c43a7ccac371/Supplier (4 seconds, 636 milliseconds)</dt>
+      </dl>
+    </div><div id="48ff7dea-0f3b-428c-abc2-6c85c239060e" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><img width="25%" src="1473791435084.png"/></dt>
+</dl>
+    </div><div id="a0ff10fb-ca9f-428b-9ece-d46558a4d1d3" class="test_failed" style="margin-left: 0px;">
+      <dl>
+        <dt>Проверка остутствия строки заявки на странице &quot;Новые заявки&quot; *** FAILED ***</dt>
+      </dl>
+      <div class="detailstoggle">
+      <a id="698e6d5e-eb79-492d-aebd-16c1cda8ab22" href="javascript:toggleDetails('1f4e043d-a0bf-4355-be36-d54aaaadd793', '698e6d5e-eb79-492d-aebd-16c1cda8ab22');">(Show Details)</a>
+      </div>
+      <div id="1f4e043d-a0bf-4355-be36-d54aaaadd793" style="display: none">
+        <table>
+          <tr valign="top">
+              <td align="left"><span class="label">Message:</span></td>
+              <td align="left"><span>The&nbsp;code&nbsp;passed&nbsp;to&nbsp;eventually&nbsp;never&nbsp;returned&nbsp;normally.&nbsp;Attempted&nbsp;32&nbsp;times&nbsp;over&nbsp;20.277181108&nbsp;seconds.&nbsp;Last&nbsp;failure&nbsp;message:&nbsp;"Сбросить <br /></span><span>Фильтрация:&nbsp;найдена&nbsp;1&nbsp;заявка"&nbsp;did&nbsp;not&nbsp;include&nbsp;substring&nbsp;"Фильтрация:&nbsp;найдено&nbsp;0&nbsp;заявок". <br /></span></td>
+            </tr>
+          <tr valign="top"><td align="left"><span class="label">Line:</span></td><td align="left"><span>(MainTest.scala:62)</span></td></tr>
+          <tr valign="top"><td align="right"><span class="label">Exception:</span></td><td align="left">org.scalatest.exceptions.TestFailedDueToTimeoutException</td></tr>
+        </table>
+        <table>
+          <tr valign="top"><td align="left" colspan="2">
+            <div class="gray">org.scalatest.concurrent.Eventually$class.tryTryAgain$1(Eventually.scala:421)</div><div class="gray">org.scalatest.concurrent.Eventually$class.eventually(Eventually.scala:439)</div><div class="gray">MainTest.eventually(MainTest.scala:14)</div>
+            <div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2.apply$mcV$sp(MainTest.scala:62)</div><div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2.apply(MainTest.scala:58)</div><div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2.apply(MainTest.scala:58)</div><div>org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)</div><div>org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)</div><div>org.scalatest.Transformer.apply(Transformer.scala:22)</div><div>org.scalatest.Transformer.apply(Transformer.scala:20)</div><div>org.scalatest.FreeSpecLike$$anon$1.apply(FreeSpecLike.scala:407)</div><div>org.scalatest.TestSuite$class.withFixture(TestSuite.scala:196)</div><div>MainTest.FreeSpecWithBrowser$$super$withFixture(MainTest.scala:14)</div><div>FreeSpecWithBrowser$class.withFixture(FreeSpecWithBrowser.scala:89)</div><div>MainTest.withFixture(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$class.invokeWithFixture$1(FreeSpecLike.scala:404)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)</div><div>org.scalatest.FreeSpecLike$class.runTest(FreeSpecLike.scala:417)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$runTest(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.runTest(BeforeAndAfter.scala:203)</div><div>MainTest.runTest(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:396)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:373)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:410)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:379)</div><div>org.scalatest.SuperEngine.runTestsImpl(Engine.scala:461)</div><div>org.scalatest.FreeSpecLike$class.runTests(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpec.runTests(FreeSpec.scala:1739)</div><div>org.scalatest.Suite$class.run(Suite.scala:1147)</div><div>org.scalatest.FreeSpec.org$scalatest$FreeSpecLike$$super$run(FreeSpec.scala:1739)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.SuperEngine.runImpl(Engine.scala:521)</div><div>org.scalatest.FreeSpecLike$class.run(FreeSpecLike.scala:520)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.run(BeforeAndAfter.scala:258)</div><div>MainTest.org$scalatest$BeforeAndAfterAll$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfterAll$class.liftedTree1$1(BeforeAndAfterAll.scala:213)</div><div>org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:210)</div><div>MainTest.run(MainTest.scala:14)</div><div>org.scalatest.tools.Framework.org$scalatest$tools$Framework$$runSuite(Framework.scala:314)</div><div>org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:472)</div><div>sbt.TestRunner.runTest$1(TestFramework.scala:76)</div><div>sbt.TestRunner.run(TestFramework.scala:85)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$.sbt$TestFramework$$withContextLoader(TestFramework.scala:185)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFunction.apply(TestFramework.scala:207)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$4.work(System.scala:63)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)</div><div>sbt.Execute.work(Execute.scala:235)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)</div><div>sbt.CompletionService$$anon$2.call(CompletionService.scala:28)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)</div><div>java.lang.Thread.run(Unknown Source)</div>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr valign="top">
+            <td align="right"><span class="label">Cause:</span></td>
+            <td align="left">org.scalatest.exceptions.TestFailedException</td>
+          </tr>
+          <tr valign="top">
+            <td align="right"><span class="label">Message:</span></td>
+            <td align="left">
+              <span>"Сбросить <br /></span><span>Фильтрация:&nbsp;найдена&nbsp;1&nbsp;заявка"&nbsp;did&nbsp;not&nbsp;include&nbsp;substring&nbsp;"Фильтрация:&nbsp;найдено&nbsp;0&nbsp;заявок" <br /></span>
+            </td>
+          </tr>
+        </table><table>
+          <tr valign="top">
+            <td align="left" colspan="2"><div>org.scalatest.MatchersHelper$.indicateFailure(MatchersHelper.scala:340)</div><div>org.scalatest.Matchers$ShouldMethodHelper$.shouldMatcher(Matchers.scala:6668)</div><div>org.scalatest.Matchers$AnyShouldWrapper.should(Matchers.scala:6704)</div><div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2$$anonfun$apply$mcV$sp$15.apply(MainTest.scala:63)</div><div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2$$anonfun$apply$mcV$sp$15.apply(MainTest.scala:63)</div><div>org.scalatest.concurrent.Eventually$class.makeAValiantAttempt$1(Eventually.scala:395)</div><div>org.scalatest.concurrent.Eventually$class.tryTryAgain$1(Eventually.scala:409)</div><div>org.scalatest.concurrent.Eventually$class.eventually(Eventually.scala:439)</div><div>MainTest.eventually(MainTest.scala:14)</div><div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2.apply$mcV$sp(MainTest.scala:62)</div><div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2.apply(MainTest.scala:58)</div><div>MainTest$$anonfun$1$$anonfun$apply$mcV$sp$2.apply(MainTest.scala:58)</div><div>org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)</div><div>org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)</div><div>org.scalatest.Transformer.apply(Transformer.scala:22)</div><div>org.scalatest.Transformer.apply(Transformer.scala:20)</div><div>org.scalatest.FreeSpecLike$$anon$1.apply(FreeSpecLike.scala:407)</div><div>org.scalatest.TestSuite$class.withFixture(TestSuite.scala:196)</div><div>MainTest.FreeSpecWithBrowser$$super$withFixture(MainTest.scala:14)</div><div>FreeSpecWithBrowser$class.withFixture(FreeSpecWithBrowser.scala:89)</div><div>MainTest.withFixture(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$class.invokeWithFixture$1(FreeSpecLike.scala:404)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)</div><div>org.scalatest.FreeSpecLike$class.runTest(FreeSpecLike.scala:417)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$runTest(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.runTest(BeforeAndAfter.scala:203)</div><div>MainTest.runTest(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:396)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:373)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:410)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:379)</div><div>org.scalatest.SuperEngine.runTestsImpl(Engine.scala:461)</div><div>org.scalatest.FreeSpecLike$class.runTests(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpec.runTests(FreeSpec.scala:1739)</div><div>org.scalatest.Suite$class.run(Suite.scala:1147)</div><div>org.scalatest.FreeSpec.org$scalatest$FreeSpecLike$$super$run(FreeSpec.scala:1739)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.SuperEngine.runImpl(Engine.scala:521)</div><div>org.scalatest.FreeSpecLike$class.run(FreeSpecLike.scala:520)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.run(BeforeAndAfter.scala:258)</div><div>MainTest.org$scalatest$BeforeAndAfterAll$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfterAll$class.liftedTree1$1(BeforeAndAfterAll.scala:213)</div><div>org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:210)</div><div>MainTest.run(MainTest.scala:14)</div><div>org.scalatest.tools.Framework.org$scalatest$tools$Framework$$runSuite(Framework.scala:314)</div><div>org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:472)</div><div>sbt.TestRunner.runTest$1(TestFramework.scala:76)</div><div>sbt.TestRunner.run(TestFramework.scala:85)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$.sbt$TestFramework$$withContextLoader(TestFramework.scala:185)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFunction.apply(TestFramework.scala:207)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$4.work(System.scala:63)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)</div><div>sbt.Execute.work(Execute.scala:235)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)</div><div>sbt.CompletionService$$anon$2.call(CompletionService.scala:28)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)</div><div>java.lang.Thread.run(Unknown Source)</div></td>
+          </tr>
+        </table>
+      </div>
+    </div><div id="924caebf-b478-4f02-b96c-d6b47012882a" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><img width="100%" src="1473791456206.png"/></dt>
+</dl>
+    </div><div id="8bf3f62f-9073-4c57-9e0e-66913fa399ab" class="scope" style="margin-left: 0px;">
+      Отправка нового сообщения c заказом
+    </div><div id="f9c90673-4777-45e8-a7aa-9eb3d22c16c5" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Получение токена авторизации и формирование заголовка для последующих вызовов API (534 milliseconds)</dt>
+      </dl>
+    </div><div id="baedf1c5-0600-485d-828a-27dd3cf1e651" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Отправка сообщения (736 milliseconds)</dt>
+      </dl>
+    </div><div id="d66ed71f-c5a3-4057-bbf2-cf942fd62001" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791457664.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="085171dc-32e9-47c3-af42-c9a2b55b5845" class="test_failed" style="margin-left: 0px;">
+      <dl>
+        <dt>Получение событий ящика и проверка успешности доставки *** FAILED ***</dt>
+      </dl>
+      <div class="detailstoggle">
+      <a id="dec15b12-610e-4fd0-8189-1e72a8ab7348" href="javascript:toggleDetails('48f4bfb8-b166-42d2-9330-97a8d5437aca', 'dec15b12-610e-4fd0-8189-1e72a8ab7348');">(Show Details)</a>
+      </div>
+      <div id="48f4bfb8-b166-42d2-9330-97a8d5437aca" style="display: none">
+        <table>
+          <tr valign="top">
+              <td align="left"><span class="label">Message:</span></td>
+              <td align="left"><span>The code passed to eventually never returned normally. Attempted 24 times over 20.71965152 seconds. Last failure message: 2 was not equal to 3.</span></td>
+            </tr>
+          <tr valign="top"><td align="left"><span class="label">Line:</span></td><td align="left"><span>(MainTest.scala:87)</span></td></tr>
+          <tr valign="top"><td align="right"><span class="label">Exception:</span></td><td align="left">org.scalatest.exceptions.TestFailedDueToTimeoutException</td></tr>
+        </table>
+        <table>
+          <tr valign="top"><td align="left" colspan="2">
+            <div class="gray">org.scalatest.concurrent.Eventually$class.tryTryAgain$1(Eventually.scala:421)</div><div class="gray">org.scalatest.concurrent.Eventually$class.eventually(Eventually.scala:439)</div><div class="gray">MainTest.eventually(MainTest.scala:14)</div><div class="gray">org.scalatest.concurrent.Eventually$class.eventually(Eventually.scala:308)</div><div class="gray">MainTest.eventually(MainTest.scala:14)</div>
+            <div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5.apply$mcV$sp(MainTest.scala:87)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5.apply(MainTest.scala:87)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5.apply(MainTest.scala:87)</div><div>org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)</div><div>org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)</div><div>org.scalatest.Transformer.apply(Transformer.scala:22)</div><div>org.scalatest.Transformer.apply(Transformer.scala:20)</div><div>org.scalatest.FreeSpecLike$$anon$1.apply(FreeSpecLike.scala:407)</div><div>org.scalatest.TestSuite$class.withFixture(TestSuite.scala:196)</div><div>MainTest.FreeSpecWithBrowser$$super$withFixture(MainTest.scala:14)</div><div>FreeSpecWithBrowser$class.withFixture(FreeSpecWithBrowser.scala:89)</div><div>MainTest.withFixture(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$class.invokeWithFixture$1(FreeSpecLike.scala:404)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)</div><div>org.scalatest.FreeSpecLike$class.runTest(FreeSpecLike.scala:417)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$runTest(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.runTest(BeforeAndAfter.scala:203)</div><div>MainTest.runTest(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:396)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:373)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:410)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:379)</div><div>org.scalatest.SuperEngine.runTestsImpl(Engine.scala:461)</div><div>org.scalatest.FreeSpecLike$class.runTests(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpec.runTests(FreeSpec.scala:1739)</div><div>org.scalatest.Suite$class.run(Suite.scala:1147)</div><div>org.scalatest.FreeSpec.org$scalatest$FreeSpecLike$$super$run(FreeSpec.scala:1739)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.SuperEngine.runImpl(Engine.scala:521)</div><div>org.scalatest.FreeSpecLike$class.run(FreeSpecLike.scala:520)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.run(BeforeAndAfter.scala:258)</div><div>MainTest.org$scalatest$BeforeAndAfterAll$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfterAll$class.liftedTree1$1(BeforeAndAfterAll.scala:213)</div><div>org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:210)</div><div>MainTest.run(MainTest.scala:14)</div><div>org.scalatest.tools.Framework.org$scalatest$tools$Framework$$runSuite(Framework.scala:314)</div><div>org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:472)</div><div>sbt.TestRunner.runTest$1(TestFramework.scala:76)</div><div>sbt.TestRunner.run(TestFramework.scala:85)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$.sbt$TestFramework$$withContextLoader(TestFramework.scala:185)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFunction.apply(TestFramework.scala:207)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$4.work(System.scala:63)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)</div><div>sbt.Execute.work(Execute.scala:235)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)</div><div>sbt.CompletionService$$anon$2.call(CompletionService.scala:28)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)</div><div>java.lang.Thread.run(Unknown Source)</div>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr valign="top">
+            <td align="right"><span class="label">Cause:</span></td>
+            <td align="left">org.scalatest.exceptions.TestFailedException</td>
+          </tr>
+          <tr valign="top">
+            <td align="right"><span class="label">Message:</span></td>
+            <td align="left">
+              <span>The code passed to eventually never returned normally. Attempted 24 times over 20.71965152 seconds. Last failure message: 2 was not equal to 3.</span>
+            </td>
+          </tr>
+        </table><table>
+          <tr valign="top">
+            <td align="left" colspan="2"><div>org.scalatest.MatchersHelper$.indicateFailure(MatchersHelper.scala:340)</div><div>org.scalatest.Matchers$ShouldMethodHelper$.shouldMatcher(Matchers.scala:6668)</div><div>org.scalatest.Matchers$AnyShouldWrapper.should(Matchers.scala:6704)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5$$anonfun$apply$mcV$sp$6.apply$mcV$sp(MainTest.scala:95)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5$$anonfun$apply$mcV$sp$6.apply(MainTest.scala:87)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5$$anonfun$apply$mcV$sp$6.apply(MainTest.scala:87)</div><div>org.scalatest.concurrent.Eventually$class.makeAValiantAttempt$1(Eventually.scala:395)</div><div>org.scalatest.concurrent.Eventually$class.tryTryAgain$1(Eventually.scala:409)</div><div>org.scalatest.concurrent.Eventually$class.eventually(Eventually.scala:439)</div><div>MainTest.eventually(MainTest.scala:14)</div><div>org.scalatest.concurrent.Eventually$class.eventually(Eventually.scala:308)</div><div>MainTest.eventually(MainTest.scala:14)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5.apply$mcV$sp(MainTest.scala:87)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5.apply(MainTest.scala:87)</div><div>MainTest$$anonfun$2$$anonfun$apply$mcV$sp$5.apply(MainTest.scala:87)</div><div>org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)</div><div>org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)</div><div>org.scalatest.Transformer.apply(Transformer.scala:22)</div><div>org.scalatest.Transformer.apply(Transformer.scala:20)</div><div>org.scalatest.FreeSpecLike$$anon$1.apply(FreeSpecLike.scala:407)</div><div>org.scalatest.TestSuite$class.withFixture(TestSuite.scala:196)</div><div>MainTest.FreeSpecWithBrowser$$super$withFixture(MainTest.scala:14)</div><div>FreeSpecWithBrowser$class.withFixture(FreeSpecWithBrowser.scala:89)</div><div>MainTest.withFixture(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$class.invokeWithFixture$1(FreeSpecLike.scala:404)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTest$1.apply(FreeSpecLike.scala:417)</div><div>org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)</div><div>org.scalatest.FreeSpecLike$class.runTest(FreeSpecLike.scala:417)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$runTest(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.runTest(BeforeAndAfter.scala:203)</div><div>MainTest.runTest(MainTest.scala:14)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpecLike$$anonfun$runTests$1.apply(FreeSpecLike.scala:476)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:396)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:373)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:410)</div><div>org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:384)</div><div>scala.collection.immutable.List.foreach(List.scala:381)</div><div>org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:384)</div><div>org.scalatest.SuperEngine.org$scalatest$SuperEngine$$runTestsInBranch(Engine.scala:379)</div><div>org.scalatest.SuperEngine.runTestsImpl(Engine.scala:461)</div><div>org.scalatest.FreeSpecLike$class.runTests(FreeSpecLike.scala:476)</div><div>org.scalatest.FreeSpec.runTests(FreeSpec.scala:1739)</div><div>org.scalatest.Suite$class.run(Suite.scala:1147)</div><div>org.scalatest.FreeSpec.org$scalatest$FreeSpecLike$$super$run(FreeSpec.scala:1739)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.FreeSpecLike$$anonfun$run$1.apply(FreeSpecLike.scala:520)</div><div>org.scalatest.SuperEngine.runImpl(Engine.scala:521)</div><div>org.scalatest.FreeSpecLike$class.run(FreeSpecLike.scala:520)</div><div>MainTest.org$scalatest$BeforeAndAfter$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfter$class.run(BeforeAndAfter.scala:258)</div><div>MainTest.org$scalatest$BeforeAndAfterAll$$super$run(MainTest.scala:14)</div><div>org.scalatest.BeforeAndAfterAll$class.liftedTree1$1(BeforeAndAfterAll.scala:213)</div><div>org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:210)</div><div>MainTest.run(MainTest.scala:14)</div><div>org.scalatest.tools.Framework.org$scalatest$tools$Framework$$runSuite(Framework.scala:314)</div><div>org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:472)</div><div>sbt.TestRunner.runTest$1(TestFramework.scala:76)</div><div>sbt.TestRunner.run(TestFramework.scala:85)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1$$anonfun$apply$8.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$.sbt$TestFramework$$withContextLoader(TestFramework.scala:185)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFramework$$anon$2$$anonfun$$init$$1.apply(TestFramework.scala:202)</div><div>sbt.TestFunction.apply(TestFramework.scala:207)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.Tests$$anonfun$9.apply(Tests.scala:216)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$3$$anonfun$apply$2.apply(System.scala:44)</div><div>sbt.std.Transform$$anon$4.work(System.scala:63)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)</div><div>sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)</div><div>sbt.Execute.work(Execute.scala:235)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)</div><div>sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)</div><div>sbt.CompletionService$$anon$2.call(CompletionService.scala:28)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)</div><div>java.util.concurrent.FutureTask.run(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)</div><div>java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)</div><div>java.lang.Thread.run(Unknown Source)</div></td>
+          </tr>
+        </table>
+      </div>
+    </div><div id="cdadee96-9423-4edb-a1de-db272fa3ea89" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791457802.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="a40224b2-d970-485f-97c9-2cecfd9b66ec" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791458012.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="1bfd2e0f-300b-4809-aa1d-25178a4936f2" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791458204.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="49b66396-e18c-4c29-a847-0ceddc8a92e2" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791458393.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="74051be7-be41-4c0f-a8c6-bbe886564ada" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791458585.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="8ca470dc-04ce-4ea0-bd09-e5a88a9aad80" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791458774.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="8f1c8348-f4ee-4cf8-b9a4-a0ad5aa71a72" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791459865.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="d7b10637-9935-494f-82a0-db39f534c200" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791460960.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="a7791188-6334-4d98-b1dc-65f7f59fdcd7" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791462053.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="f703a020-c175-4f9d-aa2b-19f55026080c" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791463160.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="55427616-df2e-460f-8aae-f2a49c9b491b" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791464250.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="79613cb8-3f91-42ae-a50d-1e14a21c9112" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791465335.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="5319fbc2-6c16-4eca-bac0-7c06770dbbe8" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791466427.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="f4650d75-5d79-4635-be00-c677d1af6e5a" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791467520.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="2b08692a-98ac-4d79-8f9a-5ee4e954f6ae" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791468612.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="326bb127-3493-4c4f-b5d3-9cf702da5a8b" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791469709.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="6491e5e1-ffa1-437c-b9c5-1dd60ee4a4cc" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791470806.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="fe399370-a79b-4c06-8dbb-16f9b5af5e7e" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791471899.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="0a829ef5-769b-4023-8102-3a69199ba397" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791472990.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="59622cc3-152f-4acd-9cf5-489c59001246" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791474076.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="df33e9da-29fc-4bc0-9122-1d48b5d8a492" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791475160.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="55dcf1cd-4d89-4591-8062-9f15716f53dd" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791476245.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="f5ee200d-c714-4943-adda-0e6e80dc6ad8" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791477331.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="ec5b7dbb-c13c-4bfd-8664-64b6b626e11d" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791478418.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="8c06f753-516f-4662-8c6a-2e98a8f53583" class="test_failed" style="margin-left: 15px;">
+       <dl>
+<dt><img width="100%" src="1473791478424.png"/></dt>
+</dl>
+    </div><div id="8c1e903d-c792-4c4a-8faf-db4230906eeb" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Проверка наличия записи в интерфейсе пользователя (2 seconds, 265 milliseconds)</dt>
+      </dl>
+    </div><div id="f8fd597e-1d30-451a-b0ec-80e8da6e1d56" class="test_passed" style="margin-left: 0px;">
+       <dl>
+<dt><img width="25%" src="1473791480695.png"/></dt>
+</dl>
+    </div><div id="9979ff0e-4813-4aba-8272-6629b88c8a18" class="scope" style="margin-left: 0px;">
+      Проверка содержимого Excel файла
+    </div><div id="ea1cacfc-f2db-4be7-a08f-2e580abceb45" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Загрузка файла (5 seconds, 226 milliseconds)</dt>
+      </dl>
+    </div><div id="dd6a259f-ba8a-4fcc-9b1d-17d17b706b33" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="Черновик подтверждения заказа №NN09 от 04.12.2011.xlsx">Файл Excel</a></dt>
+</dl>
+    </div><div id="38a5126e-f985-4f35-91a1-aefdfd3a595a" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><img width="25%" src="1473791485756.png"/></dt>
+</dl>
+    </div><div id="4800693f-2aca-476d-b6cf-169a972ffbc0" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Проверка значений в таблице Excel (917 milliseconds)</dt>
+      </dl>
+    </div><div id="11c3c22c-8dc4-4686-8437-89d805437a2b" class="scope" style="margin-left: 0px;">
+      Проверка повторной отправки
+    </div><div id="cd5e51bc-4ce7-402f-9816-01d1709dff20" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Отправка сообщения повторно (152 milliseconds)</dt>
+      </dl>
+    </div><div id="a403ae3a-653d-41fb-a6b6-8cb66e306b8b" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791487195.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="afdf1d58-f757-4657-9a1a-916761f41a18" class="test_passed" style="margin-left: 0px;">
+      <dl>
+        <dt>Получение событий ящика и проверка дубликата (2 seconds, 145 milliseconds)</dt>
+      </dl>
+    </div><div id="62218c99-24ec-4b58-b030-29418f778e35" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791487288.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="2c509022-3684-4516-a446-2f832243cf79" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791487478.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="a980025e-79a1-4156-a153-ac4fb7b1773c" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791487660.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="83a455b0-a8e3-45e1-8075-b26caa7dbaed" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791487843.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="c5bf8ed3-aaa5-4f3d-a84b-96f7c7e055f8" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791488026.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="797afbdb-9ffa-4d95-b2df-6fcc5e1c8a5f" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791488213.json">Ответное json сообщение</a></dt>
+</dl>
+    </div><div id="5fc35618-2e0a-4ba7-aec7-063a3fcdc02a" class="test_passed" style="margin-left: 15px;">
+       <dl>
+<dt><a href="1473791489336.json">Ответное json сообщение</a></dt>
+</dl>
+    </div>
+        <table id="suite_footer">
+          <tr id="suite_footer_id">
+            <td id="suite_footer_id_label_failed">Suite ID</td>
+            <td id="suite_footer_id_value" colspan="5">MainTest</td>
+          </tr>
+          <tr id="suite_footer_class">
+            <td id="suite_footer_class_label_failed">Class name</td>
+            <td id="suite_footer_class_value" colspan="5">MainTest</td>
+          </tr>
+          <tr id="suite_footer_duration">
+            <td id="suite_footer_duration_label_failed">Total duration</td>
+            <td id="suite_footer_duration_value" colspan="2">
+              59 seconds, 210 milliseconds
+              </td>
+          </tr>
+        </table>
+           <div id="printlink">(<a href="MainTest.html" target="_blank">Open MainTest in new tab</a>)</div>
+      </body>
+      <script type="text/javascript">
+        hideOpenInNewTabIfRequired();
+      </script>
+    </html>

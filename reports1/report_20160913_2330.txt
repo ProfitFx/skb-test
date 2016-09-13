@@ -1,0 +1,63 @@
+Run starting. Expected test count is: 0
+MainTest:
+Проверка отсутствия записи в интерфейсе пользователя
+- Авторизация на странице https://test-edi.kontur.ru/25a6dc25-4796-45b8-81bd-c43a7ccac371/Supplier
+  + <img src='1473791435084.png' width='25%'/>
+- Проверка остутствия строки заявки на странице "Новые заявки" *** FAILED ***
+  The code passed to eventually never returned normally. Attempted 32 times over 20.277181108 seconds. Last failure message: "Сбросить
+  Фильтрация: найдена 1 заявка" did not include substring "Фильтрация: найдено 0 заявок". (MainTest.scala:62)
+  + <img src='1473791456206.png' width='100%'/>
+Отправка нового сообщения c заказом
+- Получение токена авторизации и формирование заголовка для последующих вызовов API
+- Отправка сообщения
+  + <a href='1473791457664.json'>Ответное json сообщение</a>
+- Получение событий ящика и проверка успешности доставки *** FAILED ***
+  The code passed to eventually never returned normally. Attempted 24 times over 20.71965152 seconds. Last failure message: 2 was not equal to 3. (MainTest.scala:87)
+  + <a href='1473791457802.json'>Ответное json сообщение</a>
+  + <a href='1473791458012.json'>Ответное json сообщение</a>
+  + <a href='1473791458204.json'>Ответное json сообщение</a>
+  + <a href='1473791458393.json'>Ответное json сообщение</a>
+  + <a href='1473791458585.json'>Ответное json сообщение</a>
+  + <a href='1473791458774.json'>Ответное json сообщение</a>
+  + <a href='1473791459865.json'>Ответное json сообщение</a>
+  + <a href='1473791460960.json'>Ответное json сообщение</a>
+  + <a href='1473791462053.json'>Ответное json сообщение</a>
+  + <a href='1473791463160.json'>Ответное json сообщение</a>
+  + <a href='1473791464250.json'>Ответное json сообщение</a>
+  + <a href='1473791465335.json'>Ответное json сообщение</a>
+  + <a href='1473791466427.json'>Ответное json сообщение</a>
+  + <a href='1473791467520.json'>Ответное json сообщение</a>
+  + <a href='1473791468612.json'>Ответное json сообщение</a>
+  + <a href='1473791469709.json'>Ответное json сообщение</a>
+  + <a href='1473791470806.json'>Ответное json сообщение</a>
+  + <a href='1473791471899.json'>Ответное json сообщение</a>
+  + <a href='1473791472990.json'>Ответное json сообщение</a>
+  + <a href='1473791474076.json'>Ответное json сообщение</a>
+  + <a href='1473791475160.json'>Ответное json сообщение</a>
+  + <a href='1473791476245.json'>Ответное json сообщение</a>
+  + <a href='1473791477331.json'>Ответное json сообщение</a>
+  + <a href='1473791478418.json'>Ответное json сообщение</a>
+  + <img src='1473791478424.png' width='100%'/>
+- Проверка наличия записи в интерфейсе пользователя
+  + <img src='1473791480695.png' width='25%'/>
+Проверка содержимого Excel файла
+- Загрузка файла
+  + <a href='Черновик подтверждения заказа №NN09 от 04.12.2011.xlsx'>Файл Excel</a>
+  + <img src='1473791485756.png' width='25%'/>
+- Проверка значений в таблице Excel
+Проверка повторной отправки
+- Отправка сообщения повторно
+  + <a href='1473791487195.json'>Ответное json сообщение</a>
+- Получение событий ящика и проверка дубликата
+  + <a href='1473791487288.json'>Ответное json сообщение</a>
+  + <a href='1473791487478.json'>Ответное json сообщение</a>
+  + <a href='1473791487660.json'>Ответное json сообщение</a>
+  + <a href='1473791487843.json'>Ответное json сообщение</a>
+  + <a href='1473791488026.json'>Ответное json сообщение</a>
+  + <a href='1473791488213.json'>Ответное json сообщение</a>
+  + <a href='1473791489336.json'>Ответное json сообщение</a>
+Run completed in 1 minute, 4 seconds.
+Total number of tests run: 10
+Suites: completed 1, aborted 0
+Tests: succeeded 8, failed 2, canceled 0, ignored 0, pending 0
+*** 2 TESTS FAILED ***

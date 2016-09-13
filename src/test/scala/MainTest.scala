@@ -27,7 +27,7 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
   var messageId = ""
   var authHeader = ""
   // Данные для записи и чтения lastEventId
-  val propsFileName = "lastEventId.properties"
+  val propsFileName = conf.getString("lastEventIdfile")
   val props = new Properties
   props.load(new FileReader(propsFileName))
   var lastEventId = props.getProperty("lastEventId","1c40b7d0-61c5-4fb7-b5c0-a41e9513e9e4")
@@ -75,12 +75,6 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
       authHeader = s"KonturEdiAuth konturediauth_api_client_id=$id, konturediauth_token=$token"
     }
 
-    //    "Получение идентификатора последнего события в ящике" in {
-    //      val response = getRequest(s"/Messages/GetEvents?boxId=$boxId&exclusiveEventId=$lastEventId&count=1000")
-    //      val responseJson = parse(response)
-    //      createJsonFileToReport(responseJson)
-    //      lastEventId = (responseJson \ "LastEventId").values.toString
-    //    }
 
     "Отправка сообщения" in {
       val response = postRequest(s"/Messages/SendMessage?boxId=$boxId",postBody)
@@ -108,11 +102,15 @@ class MainTest extends FreeSpecWithBrowser {//with CancelAfterFailure{
   }
 
   "Проверка наличия записи в интерфейсе пользователя" in {
-    eventually(timeout(20 seconds), interval(1000 millis)){
-      reloadPage()
-      find(xpath(s"//*[contains(text(), '$orderNumber')]")) should not be ('isEmpty)
-      createScreenCaptureToReport()
+    eventually(timeout(20 seconds), interval(2000 millis)){
+      click on id("Search")
+      eventually(timeout (2 seconds),interval(250 millis)){
+        //Thread.sleep(1000)
+        find(xpath(".//*[@id='Filter']/div[2]")).get.text should include("Фильтрация: найдена 1 заявка")
+        find(xpath(s"//*[contains(text(), '$orderNumber')]")) should not be ('isEmpty)
+      }
     }
+    createScreenCaptureToReport()
   }
 
   "Проверка содержимого Excel файла" - {
